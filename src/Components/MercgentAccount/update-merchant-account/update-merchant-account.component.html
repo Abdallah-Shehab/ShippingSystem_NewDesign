@@ -1,376 +1,166 @@
 <div class="row g-3 mt-5 pt-0 p-5 text-end bg-body-tertiary">
   <div class="bg-white p-3 rounded">
-    <h3 class="font-weight-bold">تعديل بيانات التاجر</h3>
-    <form
-      class="row text-end g-3 mt-5 pt-0"
-      [formGroup]="merchantForm"
-      (ngSubmit)="onSubmit()"
-    >
-      <!-- <div class="col-lg-4 col-md-6 mb-3 mt-2">
-                <label for="password" class="form-label">كلمه المرور</label>
-                <input type="password" class="form-control text-end" id="password" formControlName="password"
-                    placeholder="كلمه المرور">
-                <div class="danger"
-                    *ngIf="merchantForm.get('password')?.invalid && merchantForm.get('password')!.touched">
-                    <small>Password is required</small>
-                </div>
-            </div> -->
+      <h3 class="font-weight-bold">تعديل بيانات التاجر</h3>
+      <form class="row text-end g-3 mt-5 pt-0" [formGroup]="merchantForm" (ngSubmit)="onSubmit()">
 
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="password" class="form-label">كلمة المرور</label>
-        <input
-          type="password"
-          class="form-control text-end"
-          id="password"
-          formControlName="password"
-          placeholder="كلمة المرور"
-        />
-        <div
-          *ngIf="
-            merchantForm.get('password')!.invalid &&
-            merchantForm.get('password')!.touched
-          "
-          class="text-danger"
-        >
-          <small *ngIf="merchantForm.get('password')!.hasError('required')"
-            >كلمة المرور مطلوبة</small
-          >
-          <small *ngIf="merchantForm.get('password')!.hasError('minlength')"
-            >يجب أن تتكون كلمة المرور من 8 أحرف على الأقل</small
-          >
-        </div>
-
-        <!-- Password -->
-        <div class="EnablePassword">
-          <label class="switch">
-            <input type="checkbox" (change)="EnablePassword($event)" />
-            <div class="slider">
-              <div class="circle">
-                <svg
-                  class="cross"
-                  xml:space="preserve"
-                  style="enable-background: new 0 0 512 512"
-                  viewBox="0 0 365.696 365.696"
-                  y="0"
-                  x="0"
-                  height="6"
-                  width="6"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g>
-                    <path
-                      data-original="#000000"
-                      fill="currentColor"
-                      d="M243.188 182.86 356.32 69.726c12.5-12.5 12.5-32.766 0-45.247L341.238 9.398c-12.504-12.503-32.77-12.503-45.25 0L182.86 122.528 69.727 9.374c-12.5-12.5-32.766-12.5-45.247 0L9.375 24.457c-12.5 12.504-12.5 32.77 0 45.25l113.152 113.152L9.398 295.99c-12.503 12.503-12.503 32.769 0 45.25L24.48 356.32c12.5 12.5 32.766 12.5 45.247 0l113.132-113.132L295.99 356.32c12.503 12.5 32.769 12.5 45.25 0l15.081-15.082c12.5-12.504 12.5-32.77 0-45.25zm0 0"
-                    ></path>
-                  </g>
-                </svg>
-                <svg
-                  class="checkmark"
-                  xml:space="preserve"
-                  style="enable-background: new 0 0 512 512"
-                  viewBox="0 0 24 24"
-                  y="0"
-                  x="0"
-                  height="10"
-                  width="10"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g>
-                    <path
-                      class=""
-                      data-original="#000000"
-                      fill="currentColor"
-                      d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                    ></path>
-                  </g>
-                </svg>
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="password" class="form-label">كلمه المرور</label>
+              <input type="password" class="form-control text-end" id="password" formControlName="password"
+                  placeholder="كلمه المرور">
+              <div class="danger"
+                  *ngIf="merchantForm.get('password')?.invalid && merchantForm.get('password')!.touched">
+                  <small>Password is required</small>
               </div>
-            </div>
-          </label>
+          </div>
 
-          <span>تغيير كلمة المرور ؟</span>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="email" class="form-label">البريد الالكتروني</label>
-        <input
-          type="email"
-          class="form-control text-end"
-          id="email"
-          formControlName="email"
-          placeholder="البريد الالكتروني"
-        />
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('email')?.invalid &&
-            merchantForm.get('email')!.touched
-          "
-        >
-          <small>Email is required</small>
-        </div>
-      </div>
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="email" class="form-label">البريد الالكتروني</label>
+              <input type="email" class="form-control text-end" id="email" formControlName="email"
+                  placeholder="البريد الالكتروني">
+              <div class="danger" *ngIf="merchantForm.get('email')?.invalid && merchantForm.get('email')!.touched">
+                  <small>Email is required</small>
+              </div>
+          </div>
 
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="name" class="form-label">الاسم</label>
-        <input
-          type="text"
-          class="form-control text-end"
-          id="name"
-          formControlName="name"
-          placeholder="الاسم"
-        />
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('name')?.invalid &&
-            merchantForm.get('name')!.touched
-          "
-        >
-          <small>Name is required</small>
-        </div>
-      </div>
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="name" class="form-label">الاسم</label>
+              <input type="text" class="form-control text-end" id="name" formControlName="name" placeholder="الاسم">
+              <div class="danger" *ngIf="merchantForm.get('name')?.invalid && merchantForm.get('name')!.touched">
+                <small *ngIf="merchantForm.get('name')!.hasError('required')">الاسم مطلوب</small>
+                <small *ngIf="merchantForm.get('name')!.hasError('minlength')">يجب أن يتكون الاسم من 3 أحرف على الأقل</small>
+              </div>
+             
+          </div>
 
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="address" class="form-label">العنوان</label>
-        <input
-          type="text"
-          class="form-control text-end"
-          id="address"
-          formControlName="address"
-          placeholder="العنوان"
-        />
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('address')?.invalid &&
-            merchantForm.get('address')!.touched
-          "
-        >
-          <small>Address is required</small>
-        </div>
-      </div>
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="address" class="form-label">العنوان</label>
+              <input type="text" class="form-control text-end" id="address" formControlName="address"
+                  placeholder="العنوان">
+              <div class="danger"
+                  *ngIf="merchantForm.get('address')?.invalid && merchantForm.get('address')!.touched">
+                  <small>Address is required</small>
+              </div>
+          </div>
 
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="phone" class="form-label">رقم الهاتف</label>
-        <input
-          type="tel"
-          class="form-control text-end"
-          id="phone"
-          formControlName="phone"
-          placeholder="رقم الهاتف"
-        />
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('phone')?.invalid &&
-            merchantForm.get('phone')!.touched
-          "
-        >
-          <small>Phone is required</small>
-        </div>
-      </div>
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="phone" class="form-label">رقم الهاتف</label>
+              <input type="tel" class="form-control text-end" id="phone" formControlName="phone"
+                  placeholder="رقم الهاتف">
+                  <div *ngIf="merchantForm.get('phone')!.invalid && merchantForm.get('phone')!.touched" class="text-danger">
+                    <small *ngIf="merchantForm.get('phone')!.hasError('required')">رقم الهاتف مطلوب</small>
+                    <small *ngIf="merchantForm.get('phone')!.hasError('pattern')">صيغة رقم الهاتف غير صحيحة</small>
+                  </div>
+          </div>
 
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="branchId" class="form-label">الفرع</label>
-        <select
-          class="form-select text-end"
-          id="branchId"
-          formControlName="branchId"
-          aria-label="الفرع"
-        >
-          <option value="" disabled selected>اختر الفرع</option>
-          <option *ngFor="let branch of branches" [value]="branch.id">
-            {{ branch.name }}
-          </option>
-        </select>
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('branchId')?.invalid &&
-            merchantForm.get('branchId')?.touched
-          "
-        >
-          <small>Branch is required</small>
-        </div>
-      </div>
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="branchId" class="form-label">الفرع</label>
+              <select class="form-select text-end" id="branchId" formControlName="branchId" aria-label="الفرع">
+                  <option value="" disabled selected>اختر الفرع</option>
+                  <option *ngFor="let branch of branches" [value]="branch.id">{{ branch.name }}</option>
+              </select>
+              <div class="danger"
+                  *ngIf="merchantForm.get('branchId')?.invalid && merchantForm.get('branchId')?.touched">
+                  <small>Branch is required</small>
+              </div>
+          </div>
 
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="city" class="form-label">المدينة</label>
-        <select
-          class="form-select text-end"
-          id="city"
-          formControlName="city"
-          aria-label="المدينة"
-        >
-          <option value="" disabled selected>اختر المدينة</option>
-          <option *ngFor="let city of cities" [value]="city.name">
-            {{ city.name }}
-          </option>
-        </select>
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('city')?.invalid &&
-            merchantForm.get('city')?.touched
-          "
-        >
-          <small>City is required</small>
-        </div>
-      </div>
 
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="government" class="form-label">المحافظة</label>
-        <select
-          class="form-select text-end"
-          id="government"
-          formControlName="government"
-          aria-label="المحافظة"
-        >
-          <option value="" disabled selected>اختر المحافظة</option>
-          <option
-            *ngFor="let government of governments"
-            [value]="government.name"
-          >
-            {{ government.name }}
-          </option>
-        </select>
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('government')?.invalid &&
-            merchantForm.get('government')?.touched
-          "
-        >
-          <small>Government is required</small>
-        </div>
-      </div>
 
-      <div class="col-lg-4 col-md-6 mb-3 mt-2">
-        <label for="storeName" class="form-label">اسم المتجر</label>
-        <input
-          type="text"
-          class="form-control text-end"
-          id="storeName"
-          formControlName="storeName"
-          placeholder="اسم المتجر"
-        />
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('storeName')?.invalid &&
-            merchantForm.get('storeName')?.touched
-          "
-        >
-          <small>Store name is required</small>
-        </div>
-      </div>
 
-      <div class="col-lg-6 col-md-6 mb-3 mt-2">
-        <label for="rejectOrderPercentage" class="form-label"
-          >نسبة إلغاء الطلب</label
-        >
-        <input
-          type="number"
-          class="form-control text-end"
-          id="rejectOrderPercentage"
-          formControlName="rejectOrderPercentage"
-          placeholder="نسبة إلغاء الطلب"
-        />
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('rejectOrderPercentage')?.invalid &&
-            merchantForm.get('rejectOrderPercentage')?.touched
-          "
-        >
-          <small>Reject order percentage is required</small>
-        </div>
-      </div>
 
-      <div class="col-lg-6 col-md-6 mb-3 mt-2">
-        <label for="pickupCost" class="form-label">تكلفة الاستلام</label>
-        <input
-          type="number"
-          class="form-control text-end"
-          id="pickupCost"
-          formControlName="pickupCost"
-          placeholder="تكلفة الاستلام"
-        />
-        <div
-          class="danger"
-          *ngIf="
-            merchantForm.get('pickupCost')?.invalid &&
-            merchantForm.get('pickupCost')?.touched
-          "
-        >
-          <small>Pickup cost is required</small>
-        </div>
-      </div>
 
-      <div class="row align-items-center mt-3 border rounded p-3">
-        <div class="col">
-          <button class="btn btn-primary" (click)="addNewOffer()">
-            اضافه جديده
-          </button>
-        </div>
-        <h3 class="col">اضافه باقات باسعار مميزه لبعض المدن</h3>
-        <div class="mt-3">
-          <table class="table table-bordered">
-            <thead class="table-secondary">
-              <tr>
-                <th scope="col">حذف</th>
-                <th scope="col">سعر الشحن</th>
-                <th scope="col">المدينه</th>
-                <th scope="col">المحافظة</th>
-              </tr>
-            </thead>
-            <tbody formArrayName="specialOffers">
-              <tr
-                *ngFor="let offer of specialOffers.controls; let i = index"
-                [formGroupName]="i"
-              >
-                <td>
-                  <i
-                    class="bi bi-trash danger m-2"
-                    (click)="removeOffer(i)"
-                  ></i>
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    class="form-control text-end"
-                    formControlName="price"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    class="form-control text-end"
-                    formControlName="city"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    class="form-control text-end"
-                    formControlName="government"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="city" class="form-label">المدينة</label>
+              <select class="form-select text-end" id="city" formControlName="city" aria-label="المدينة">
+                  <option value="" disabled selected>اختر المدينة</option>
+                  <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+              </select>
+              <div class="danger" *ngIf="merchantForm.get('city')?.invalid && merchantForm.get('city')?.touched">
+                  <small>City is required</small>
+              </div>
+          </div>
 
-      <div class="col-12 mb-3 mt-2 text-end">
-        <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
-      </div>
-    </form>
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="government" class="form-label">المحافظة</label>
+              <select class="form-select text-end" id="government" formControlName="government" aria-label="المحافظة">
+                  <option value="" disabled selected>اختر المحافظة</option>
+                  <option *ngFor="let government of governments" [value]="government.name">{{ government.name }}
+                  </option>
+              </select>
+              <div class="danger"
+                  *ngIf="merchantForm.get('government')?.invalid && merchantForm.get('government')?.touched">
+                  <small>Government is required</small>
+              </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-3 mt-2">
+              <label for="storeName" class="form-label">اسم المتجر</label>
+              <input type="text" class="form-control text-end" id="storeName" formControlName="storeName"
+                  placeholder="اسم المتجر">
+              <div class="danger"
+                  *ngIf="merchantForm.get('storeName')?.invalid && merchantForm.get('storeName')?.touched">
+                  <small>Store name is required</small>
+              </div>
+          </div>
+
+
+
+          <div class="col-lg-6 col-md-6 mb-3 mt-2">
+              <label for="rejectOrderPercentage" class="form-label">نسبة إلغاء الطلب</label>
+              <input type="number" class="form-control text-end" id="rejectOrderPercentage"
+                  formControlName="rejectOrderPercentage" placeholder="نسبة إلغاء الطلب">
+              <div class="danger"
+                  *ngIf="merchantForm.get('rejectOrderPercentage')?.invalid && merchantForm.get('rejectOrderPercentage')?.touched">
+                  <small>Reject order percentage is required</small>
+              </div>
+          </div>
+
+
+
+          <div class="col-lg-6 col-md-6 mb-3 mt-2">
+              <label for="pickupCost" class="form-label">تكلفة الاستلام</label>
+              <input type="number" class="form-control text-end" id="pickupCost" formControlName="pickupCost"
+                  placeholder="تكلفة الاستلام">
+              <div class="danger"
+                  *ngIf="merchantForm.get('pickupCost')?.invalid && merchantForm.get('pickupCost')?.touched">
+                  <small>Pickup cost is required</small>
+              </div>
+          </div>
+
+
+
+
+          <div class="row align-items-center mt-3 border rounded p-3">
+              <div class="col">
+                  <button class="btn btn-primary" (click)="addNewOffer()">اضافه جديده</button>
+              </div>
+              <h3 class="col">اضافه باقات باسعار مميزه لبعض المدن</h3>
+              <div class="mt-3">
+                  <table class="table table-bordered">
+                      <thead class="table-secondary">
+                          <tr>
+                              <th scope="col">حذف</th>
+                              <th scope="col">سعر الشحن</th>
+                              <th scope="col">المدينه</th>
+                              <th scope="col">المحافظة</th>
+                          </tr>
+                      </thead>
+                      <tbody formArrayName="specialOffers">
+                          <tr *ngFor="let offer of specialOffers.controls; let i = index" [formGroupName]="i">
+                              <td><i class="bi bi-trash danger m-2" (click)="removeOffer(i)"></i></td>
+                              <td><input type="number" class="form-control text-end" formControlName="price"></td>
+                              <td><input type="text" class="form-control text-end" formControlName="city"></td>
+                              <td><input type="text" class="form-control text-end" formControlName="government"></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+
+          <div class="col-12 mb-3 mt-2 text-end">
+              <button type="submit" class="btn btn-primary">حفظ التعديلات </button>
+          </div>
+
+      </form>
   </div>
 </div>
