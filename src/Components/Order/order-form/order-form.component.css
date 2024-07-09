@@ -1,0 +1,55 @@
+/* Example custom styles for RTL direction */
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+* {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.form-group {
+  text-align: right; /* Align text to the right */
+}
+
+.form-control {
+  direction: rtl; /* Set direction to right-to-left */
+}
+.custom-form {
+  direction: rtl; /* Set direction to RTL */
+}
+select {
+  background-position: left 0.75rem center;
+  padding: 0.375rem 0.75rem 0.375rem 2.25rem;
+}
+.custom-border {
+  border: 1px solid rgb(173, 169, 169) !important;
+}
+thead tr th {
+  background-color: #e9eaf5;
+}
+
+td,
+tr,
+table {
+  text-align: center;
+}
+.buttonAddProduct{
+  justify-content: flex-start;
+}
+/* .input-weight ,.input-quantity{
+  max-width: 70px;
+  min-width: 50px;
+}
+
+.input-name-product{
+  max-width: 150px;
+  min-width: 100px;
+} */
+
+.container.table-add-product{
+  display: block;
+}
+.container.table-add-product input{
+  max-width: 180px;
+  max-height: 40px;
+  min-width: 150px;
+}

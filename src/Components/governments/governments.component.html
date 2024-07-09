@@ -1,0 +1,107 @@
+<p-card class="card mt-5 mb-3">
+  <div class="d-flex justify-content-between">
+    <button
+      class="btn btn-primary rounded fs-5 p-2"
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      [disabled]="!permissions.length || !permissions[0].canCreate"
+    >
+      <i class="bi bi-plus-square"></i>
+      إضافة محافظة
+    </button>
+    <span class="fs-3 fw-bold text-end">المحافظات</span>
+  </div>
+</p-card>
+
+<p-table
+  #dt2
+  [value]="Governments"
+  dataKey="id"
+  [rows]="10"
+  [rowsPerPageOptions]="[5, 10, 50]"
+  [paginator]="true"
+  [loading]="loading"
+  [globalFilterFields]="['name']"
+  [tableStyle]="{ 'min-width': '75rem' }"
+>
+  <ng-template pTemplate="caption">
+    <div class="d-flex justify-content-between">
+      <button
+        label="Clear"
+        (click)="clear(dt2)"
+        class="btn btn-outline-danger rounded fs-5 text-center"
+      >
+        <i class="bi bi-arrow-repeat"></i>
+      </button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="bi bi-search"></i>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="searchValue"
+          (input)="onInput($event)"
+        />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th></th>
+      <th>الإعدادات</th>
+
+      <th>الحالة</th>
+      <th>إسم المحافظة</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-government>
+    <tr>
+      <td></td>
+      <td>
+        <button
+          class="btn btn-danger mx-1"
+          (click)="Delete(government.id)"
+          [disabled]="!permissions.length || !permissions[0].canDelete"
+        >
+          <i class="bi bi-trash"></i>
+        </button>
+        <button
+          class="btn btn-secondary mx-1"
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="changeIdVal(government.id)"
+          [disabled]="!permissions.length || !permissions[0].canWrite"
+        >
+          <i class="bi bi-pen"></i>
+        </button>
+      </td>
+
+      <td>
+        <p-inputSwitch
+          [(ngModel)]="government.status"
+          (onChange)="onSwitchChange($event, government.id)"
+          [disabled]="!permissions.length || !permissions[0].canWrite"
+        />
+      </td>
+      <td>
+        {{ government.name }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td class="text-center" colspan="7">لم يتم إيجاد المحافظة</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-dialog
+  [id]="DialogId"
+  (governmentAdded)="onGovernmentAdded()"
+></app-dialog>
+<div class="card flex justify-content-center">
+  <p-toast />
+</div>

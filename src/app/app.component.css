@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  opacity: 1;
+  overflow-y: scroll;
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+h4 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.275rem;
+  color: var(--bs-emphasis-color);
+}
+
+/* Layout for admin dashboard skeleton */
+
+.wrapper {
+  align-items: stretch;
+  display: flex;
+  width: 100%;
+}

@@ -1,0 +1,29 @@
+:root[data-bs-theme="dark"] .p-datatable {
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+:root[data-bs-theme="dark"] .p-datatable th,
+:root[data-bs-theme="dark"] .p-datatable td {
+  border-color: #444 !important;
+}
+
+:root[data-bs-theme="dark"] .p-datatable-header {
+  background-color: #444 !important;
+  color: #fff !important;
+}
+
+:root[data-bs-theme="dark"] .p-datatable-thead > tr > th {
+  background-color: #555 !important;
+  color: #fff !important;
+}
+
+:root[data-bs-theme="dark"] .p-datatable-tbody > tr > td {
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+:root[data-bs-theme="dark"] .p-datatable-footer {
+  background-color: #444 !important;
+  color: #fff !important;
+}

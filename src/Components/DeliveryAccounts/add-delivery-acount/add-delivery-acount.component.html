@@ -1,0 +1,257 @@
+<div class="row g-3 mt-5 pt-0 p-5 text-end bg-body-tertiary">
+  <div class="bg-white p-3 rounded">
+    <h3 class="font-weight-bold">إضافة مندوب</h3>
+  </div>
+
+  <div
+    *ngIf="successMessage"
+    class="alert alert-success text-center container"
+    role="alert"
+  >
+    {{ successMessage }}
+  </div>
+
+  <div class="bg-white p-3 rounded">
+    <form
+      [formGroup]="deliveryForm"
+      (ngSubmit)="onSubmit()"
+      class="row text-end g-3 mt-5 pt-0"
+    >
+      <!-- Password -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="password" class="form-label">كلمة المرور</label>
+        <input
+          type="password"
+          class="form-control text-end"
+          id="password"
+          formControlName="password"
+          placeholder="كلمة المرور"
+        />
+        <div
+          *ngIf="
+            deliveryForm.get('password')!.invalid &&
+            deliveryForm.get('password')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="deliveryForm.get('password')!.hasError('required')"
+            >كلمة المرور مطلوبة</small
+          >
+          <small *ngIf="deliveryForm.get('password')!.hasError('minlength')"
+            >يجب أن تتكون كلمة المرور من 8 أحرف على الأقل</small
+          >
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="email" class="form-label">البريد الإلكتروني</label>
+        <input
+          type="email"
+          class="form-control text-end"
+          id="email"
+          formControlName="email"
+          placeholder="البريد الإلكتروني"
+        />
+        <div
+          *ngIf="
+            deliveryForm.get('email')!.invalid &&
+            deliveryForm.get('email')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="deliveryForm.get('email')!.hasError('required')"
+            >البريد الإلكتروني مطلوب</small
+          >
+          <small *ngIf="deliveryForm.get('email')!.hasError('email')"
+            >صيغة البريد الإلكتروني غير صحيحة</small
+          >
+        </div>
+      </div>
+
+      <!-- Name -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="userName" class="form-label">الاسم</label>
+        <input
+          type="text"
+          class="form-control text-end"
+          id="userName"
+          formControlName="userName"
+          placeholder="الاسم"
+        />
+        <div
+          *ngIf="
+            deliveryForm.get('userName')!.invalid &&
+            deliveryForm.get('userName')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="deliveryForm.get('userName')!.hasError('required')"
+            >الاسم مطلوب</small
+          >
+          <small *ngIf="deliveryForm.get('userName')!.hasError('minlength')"
+            >يجب أن يتكون الاسم من 3 أحرف على الأقل</small
+          >
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="phone" class="form-label">رقم الهاتف</label>
+        <input
+          type="tel"
+          class="form-control text-end"
+          id="phone"
+          formControlName="phone"
+          placeholder="رقم الهاتف"
+        />
+        <div
+          *ngIf="
+            deliveryForm.get('phone')!.invalid &&
+            deliveryForm.get('phone')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="deliveryForm.get('phone')!.hasError('required')"
+            >رقم الهاتف مطلوب</small
+          >
+          <small *ngIf="deliveryForm.get('phone')!.hasError('pattern')"
+            >صيغة رقم الهاتف غير صحيحة</small
+          >
+        </div>
+      </div>
+
+      <!-- Governments -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="governments" class="form-label">المحافظات</label>
+        <input
+          type="text"
+          class="form-control text-end"
+          id="governments"
+          formControlName="governments"
+          placeholder="المحافظات"
+        />
+        <div
+          *ngIf="
+            deliveryForm.get('governments')!.invalid &&
+            deliveryForm.get('governments')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="deliveryForm.get('governments')!.hasError('required')"
+            >المحافظات مطلوبة</small
+          >
+        </div>
+      </div>
+
+      <!-- Branch -->
+
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="branch" class="form-label">الفرع</label>
+        <select
+          class="form-select text-end"
+          id="branch"
+          formControlName="branch"
+          aria-label="الفرع"
+        >
+          <option selected disabled>اختر الفرع</option>
+          <option *ngFor="let branch of branches" [value]="branch.id">
+            {{ branch.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            deliveryForm.get('branch')!.invalid &&
+            deliveryForm.get('branch')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="deliveryForm.get('branch')!.hasError('required')"
+            >الفرع مطلوب</small
+          >
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="address" class="form-label">العنوان</label>
+        <input
+          type="text"
+          class="form-control text-end"
+          id="address"
+          formControlName="address"
+          placeholder="العنوان"
+        />
+        <div
+          *ngIf="
+            deliveryForm.get('address')!.invalid &&
+            deliveryForm.get('address')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="deliveryForm.get('address')!.hasError('required')"
+            >العنوان مطلوب</small
+          >
+        </div>
+      </div>
+
+      <!-- Discount Type -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="discount_type" class="form-label">نوع الخصم</label>
+        <select
+          class="form-select text-end"
+          id="discount_type"
+          formControlName="discount_type"
+          aria-label="نوع الخصم"
+        >
+          <option selected disabled>اختر نوع الخصم</option>
+          <option value="1">10</option>
+          <option value="2">20</option>
+          <option value="3">30</option>
+        </select>
+        <div
+          *ngIf="
+            deliveryForm.get('discount_type')!.invalid &&
+            deliveryForm.get('discount_type')!.touched
+          "
+          class="text-danger"
+        >
+          <small *ngIf="deliveryForm.get('discount_type')!.hasError('required')"
+            >نوع الخصم مطلوب</small
+          >
+        </div>
+      </div>
+
+      <!-- Company Percentage -->
+      <div class="col-lg-4 col-md-6 mb-3 mt-2">
+        <label for="company_Percantage" class="form-label"
+          >نسبة الشركة من الطلب</label
+        >
+        <input
+          type="text"
+          class="form-control text-end"
+          id="company_Percantage"
+          formControlName="company_Percantage"
+          placeholder="نسبة الشركة"
+        />
+        <div
+          *ngIf="
+            deliveryForm.get('company_Percantage')!.invalid &&
+            deliveryForm.get('company_Percantage')!.touched
+          "
+          class="text-danger"
+        >
+          <small
+            *ngIf="deliveryForm.get('company_Percantage')!.hasError('required')"
+            >نسبة الشركة مطلوبة</small
+          >
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-lg-12 mt-4">
+        <button class="btn btn-primary">حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>

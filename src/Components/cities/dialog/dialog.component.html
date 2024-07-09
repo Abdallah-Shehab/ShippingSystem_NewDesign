@@ -1,0 +1,64 @@
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  #exampleModal
+  (hidden.bs.modal)="resetForm()"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          {{ id == 0 ? "إضافة مدينة " : "تعديل مدينة " }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label"
+              >إسم المدينة :</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="government-name"
+              [(ngModel)]="cityObj.name"
+              name="name"
+            />
+            <span *ngIf="!isValid" class="text-danger">Name is Required</span>
+            <select
+              class="form-select mt-3"
+              [(ngModel)]="cityObj.governmentID"
+              name="governmentID"
+              aria-label="Default select example"
+            >
+              <option *ngFor="let gov of governments" [value]="gov.id">
+                {{ gov.name }}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          إغلاق
+        </button>
+
+        <button type="button" class="btn btn-primary" (click)="CityControl()">
+          {{ id == 0 ? "إضافة مدينة " : "تعديل مدينة " }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card flex justify-content-center">
+  <p-toast />
+</div>

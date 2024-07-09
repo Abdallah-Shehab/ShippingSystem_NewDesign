@@ -1,0 +1,155 @@
+<p-card class="card mt-5 mb-3 text-end">
+  <div class="d-flex justify-content-between text-end">
+    <button
+      class="btn btn-primary rounded fs-5"
+      [routerLink]="['addorder']"
+      *ngIf="!permissions.length || permissions[0].canCreate"
+    >
+      <i class="bi bi-plus-circle"></i>
+      إضافة طلب
+    </button>
+    <span class="fs-3 fw-bold text-end">الطلبات</span>
+  </div>
+</p-card>
+
+<p-table
+  #dt2
+  [value]="Orders"
+  dataKey="id"
+  [rows]="10"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [paginator]="true"
+  [loading]="loading"
+  [scrollable]="true"
+  [exportHeader]="'customExportHeader'"
+  [globalFilterFields]="['id', 'status']"
+  [tableStyle]="{ 'min-width': '75rem' }"
+>
+  <ng-template pTemplate="caption">
+    <div class="d-flex justify-content-between">
+      <button
+        label="Clear"
+        (click)="clear(dt2)"
+        class="btn btn-outline-danger rounded text-center"
+      >
+        <i class="bi bi-arrow-repeat fs-5"> حذف البحث</i>
+      </button>
+      <span class="p-input-icon-left ml-auto">
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="searchValue"
+          (input)="onInput($event)"
+          placeholder="البحث"
+        />
+      </span>
+
+      <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+          <p-dropdown
+            [(ngModel)]="statuses.values"
+            [options]="statuses"
+            (onChange)="filter($event.value)"
+            placeholder="اختر الحالة"
+            [showClear]="false"
+            class="fs-2"
+          >
+          </p-dropdown>
+        </ng-template>
+      </p-columnFilter>
+    </div>
+
+    <button class="btn btn-primary p-2 my-2" (click)="PrintPagePDF()">
+      PDF
+    </button>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>طباعة</th>
+      <th>الإعدادات</th>
+      <th>تغيير الحالة</th>
+      <th>الحالة</th>
+      <th>تكلفة الطلب</th>
+
+      <th>المدينه</th>
+      <th>المحافظة</th>
+      <th>بيانات العميل</th>
+      <th>التاريخ</th>
+      <th>الرقم التسلسلى</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-order>
+    <tr #tableRow>
+      <td>
+        <button class="btn btn-info" (click)="printTableRowAsPdf()">
+          <i class="bi bi-printer-fill"></i>
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-primary mx-3"
+          [disabled]="!permissions.length || !permissions[0].canWrite"
+        >
+          <!-- [routerLink]="['/employee/', emp.id]" -->
+          <i class="bi bi-pen"></i>
+        </button>
+        <button
+          class="btn btn-danger"
+          (click)="Delete(order.id)"
+          [disabled]="!permissions.length || !permissions[0].canDelete"
+        >
+          <i class="bi bi-trash2"></i>
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="changeIdStatus(order.id)"
+          [disabled]="
+            RoleName == 'تاجر' ||
+            !permissions.length || !permissions[0].canWrite
+          "
+        >
+          تغيير الحالة
+        </button>
+      </td>
+
+      <td>
+        {{ order.status }}
+      </td>
+      <td>
+        {{ order.totalPrice }}
+      </td>
+      <td>
+        {{ order.cityt }}
+      </td>
+      <td>
+        {{ order.government }}
+      </td>
+      <td>
+        {{ order.clientName }}
+        <br />
+        {{ order.phoneOne }}
+      </td>
+      <td>
+        {{ order.createdDate }}
+      </td>
+      <td>
+        {{ order.id }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="10" class="text-center">.لم يتم إيجاد الطلب</td>
+    </tr>
+  </ng-template>
+</p-table>
+<div class="card flex justify-content-center">
+  <p-toast />
+</div>
+<app-dialog [id]="orderId" (statusChanged)="updateOrders()"></app-dialog>

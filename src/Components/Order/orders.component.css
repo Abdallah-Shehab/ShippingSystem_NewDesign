@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+* {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+td,
+tr,
+table {
+  text-align: center;
+}
+
+@media print {
+  input,
+  button,
+  .p-dropdown,
+  .btn,
+  .p-component,
+  .p-column-filter-row {
+    display: none;
+  }
+}

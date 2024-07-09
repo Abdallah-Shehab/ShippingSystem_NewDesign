@@ -1,0 +1,335 @@
+<div class="container-fluid">
+  <div
+    class="row flex-column justify-content-center align-items-center w-100 g-2"
+  >
+    <img class="loginLogo" src="assets/logos/logo (2).png" alt="" />
+
+    <div class="formContainer mb-5 text-center">
+      <div class="swiper-pagination" style="width: 100%"></div>
+    </div>
+
+    <div class="swiper mySwiper mt-5">
+      <div class="swiper-wrapper">
+        <!-- مندوب -->
+        <div class="swiper-slide">
+          <div class="forms">
+            <div class="form-wrapper is-active">
+              <form
+                class="form form-login"
+                (ngSubmit)="handleLogin('delivery')"
+                [formGroup]="deliveryLoginForm"
+              >
+                <fieldset>
+                  <legend>من فضلك ادخل حسابك و كلمة السر.</legend>
+                  <div class="input-block">
+                    <label for="login-email">الحساب</label>
+                    <input
+                      id="delivery-login-email"
+                      formControlName="Email"
+                      type="email"
+                    />
+                    <div class="Validator-block">
+                      <div
+                        *ngIf="
+                          deliveryLoginForm.get('Email')?.errors &&
+                          deliveryLoginForm.get('Email')?.touched
+                        "
+                      >
+                        <p
+                          *ngIf="
+                            deliveryLoginForm.get('Email')?.getError('required')
+                          "
+                          class="error no-margin"
+                        >
+                          الحساب مطلوب
+                        </p>
+                        <p
+                          *ngIf="
+                            deliveryLoginForm.get('Email')?.getError('email')
+                          "
+                          class="error no-margin"
+                        >
+                          هذا ليس الشكل الصحيح للحساب
+                        </p>
+                      </div>
+                      <div
+                        *ngIf="deliveryLoginForm.errors?.['invalidEmailLogin']"
+                        class="error"
+                      >
+                        هذا الحساب غير موجود ، من فضلك اعد المحاولة
+                      </div>
+                    </div>
+                  </div>
+                  <div class="input-block">
+                    <label for="login-password">كلمة السر</label>
+                    <input
+                      id="delivery-login-password"
+                      formControlName="Password"
+                      type="password"
+                      required
+                    />
+                    <div class="Validator-block">
+                      <div
+                        *ngIf="
+                          deliveryLoginForm.get('Password')?.errors &&
+                          deliveryLoginForm.get('Password')?.touched
+                        "
+                      >
+                        <p
+                          *ngIf="
+                            deliveryLoginForm
+                              .get('Password')
+                              ?.getError('required')
+                          "
+                          class="error no-margin"
+                        >
+                          كلمة السر مطلوبة
+                        </p>
+                      </div>
+                      <div
+                        *ngIf="deliveryLoginForm.errors?.['invalidPasswordLogin']"
+                        class="error"
+                      >
+                        كلمة السر خاطئة، من فضلك اعد المحاولة
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- Custom Validator Error Message -->
+                <div class="Validator-block">
+                  <div
+                    *ngIf="deliveryLoginForm.errors?.['somethingWrong']"
+                    class="error"
+                  >
+                    حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  [disabled]="deliveryLoginForm.invalid"
+                  class="btn-login"
+                >
+                  تسجيل الدخول
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- موظف -->
+        <div class="swiper-slide">
+          <div class="forms">
+            <div class="form-wrapper is-active">
+              <form
+                class="form form-login"
+                (ngSubmit)="handleLogin('employee')"
+                [formGroup]="empLoginForm"
+              >
+                <fieldset>
+                  <legend>من فضلك ادخل حسابك و كلمة السر.</legend>
+                  <div class="input-block">
+                    <label for="login-email">الحساب</label>
+                    <input
+                      id="emp-login-email"
+                      formControlName="Email"
+                      type="email"
+                    />
+                    <div class="Validator-block">
+                      <div
+                        *ngIf="
+                          empLoginForm.get('Email')?.errors &&
+                          empLoginForm.get('Email')?.touched
+                        "
+                      >
+                        <p
+                          *ngIf="
+                            empLoginForm.get('Email')?.getError('required')
+                          "
+                          class="error no-margin"
+                        >
+                          الحساب مطلوب
+                        </p>
+                        <p
+                          *ngIf="empLoginForm.get('Email')?.getError('email')"
+                          class="error no-margin"
+                        >
+                          هذا ليس الشكل الصحيح للحساب
+                        </p>
+                      </div>
+                      <div
+                        *ngIf="empLoginForm.errors?.['invalidEmailLogin']"
+                        class="error"
+                      >
+                        هذا الحساب غير موجود ، من فضلك اعد المحاولة
+                      </div>
+                    </div>
+                  </div>
+                  <div class="input-block">
+                    <label for="login-password">كلمة السر</label>
+                    <input
+                      id="emp-login-password"
+                      formControlName="Password"
+                      type="password"
+                      required
+                    />
+                    <div class="Validator-block">
+                      <div
+                        *ngIf="
+                          empLoginForm.get('Password')?.errors &&
+                          empLoginForm.get('Password')?.touched
+                        "
+                      >
+                        <p
+                          *ngIf="
+                            empLoginForm.get('Password')?.getError('required')
+                          "
+                          class="error no-margin"
+                        >
+                          كلمة السر مطلوبة
+                        </p>
+                      </div>
+                      <div
+                        *ngIf="empLoginForm.errors?.['invalidPasswordLogin']"
+                        class="error"
+                      >
+                        كلمة السر خاطئة، من فضلك اعد المحاولة
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- Custom Validator Error Message -->
+                <div class="Validator-block">
+                  <div
+                    *ngIf="empLoginForm.errors?.['somethingWrong']"
+                    class="error"
+                  >
+                    حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  [disabled]="empLoginForm.invalid"
+                  class="btn-login"
+                >
+                  تسجيل الدخول
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- تاجر -->
+        <div class="swiper-slide">
+          <div class="forms">
+            <div class="form-wrapper is-active">
+              <form
+                class="form form-login"
+                (ngSubmit)="handleLogin('merchant')"
+                [formGroup]="merchantLoginForm"
+              >
+                <fieldset>
+                  <legend>من فضلك ادخل حسابك و كلمة السر.</legend>
+                  <div class="input-block">
+                    <label for="login-email">الحساب</label>
+                    <input
+                      id="merchant-login-email"
+                      formControlName="Email"
+                      type="email"
+                    />
+                    <div class="Validator-block">
+                      <div
+                        *ngIf="
+                          merchantLoginForm.get('Email')?.errors &&
+                          merchantLoginForm.get('Email')?.touched
+                        "
+                      >
+                        <p
+                          *ngIf="
+                            merchantLoginForm.get('Email')?.getError('required')
+                          "
+                          class="error no-margin"
+                        >
+                          الحساب مطلوب
+                        </p>
+                        <p
+                          *ngIf="
+                            merchantLoginForm.get('Email')?.getError('email')
+                          "
+                          class="error no-margin"
+                        >
+                          هذا ليس الشكل الصحيح للحساب
+                        </p>
+                      </div>
+                      <div
+                        *ngIf="merchantLoginForm.errors?.['invalidEmailLogin']"
+                        class="error"
+                      >
+                        هذا الحساب غير موجود ، من فضلك اعد المحاولة
+                      </div>
+                    </div>
+                  </div>
+                  <div class="input-block">
+                    <label for="login-password">كلمة السر</label>
+                    <input
+                      id="merchant-login-password"
+                      formControlName="Password"
+                      type="password"
+                      required
+                    />
+                    <div class="Validator-block">
+                      <div
+                        *ngIf="
+                          merchantLoginForm.get('Password')?.errors &&
+                          merchantLoginForm.get('Password')?.touched
+                        "
+                      >
+                        <p
+                          *ngIf="
+                            merchantLoginForm
+                              .get('Password')
+                              ?.getError('required')
+                          "
+                          class="error no-margin"
+                        >
+                          كلمة السر مطلوبة
+                        </p>
+                      </div>
+                      <div
+                        *ngIf="merchantLoginForm.errors?.['invalidPasswordLogin']"
+                        class="error"
+                      >
+                        كلمة السر خاطئة، من فضلك اعد المحاولة
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- Custom Validator Error Message -->
+                <div class="Validator-block">
+                  <div
+                    *ngIf="merchantLoginForm.errors?.['somethingWrong']"
+                    class="error"
+                  >
+                    حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  [disabled]="merchantLoginForm.invalid"
+                  class="btn-login"
+                >
+                  تسجيل الدخول
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

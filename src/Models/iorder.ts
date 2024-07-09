@@ -1,0 +1,19 @@
+export interface Iorder {
+    isDeleted:boolean,
+    id:number,
+    clientName:string,
+    status:string,
+    totalPrice:number,
+    totalWeight:number,
+    phoneOne:string,
+    phoneTwo:string,
+    email:string,
+    notes:string,
+    streetAndVillage:string,
+    staffMemberID:number,
+    merchantID:number,
+    deliveryID:number,
+    shippingTypeID:number,
+    paymentTypeID:number,
+    products:[]
+}

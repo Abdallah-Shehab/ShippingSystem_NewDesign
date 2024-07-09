@@ -1,0 +1,126 @@
+<!-- <p-card class="card mt-5 mb-3">
+ <button
+      class="btn btn-primary rounded fs-5 p-2"
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      [disabled]="!permissions[0].canCreate"
+    >
+      <i class="bi bi-shield-plus"></i>
+      إضافة صلاحية
+    </button> 
+    <span class="fs-3 fw-bold text-end">الصلاحيات</span>
+  </div>
+</p-card> -->
+
+<div class="card flex-fill border-0 illustration mb-3 mt-5">
+  <div class="card-body p-0 d-flex flex-fill">
+    <div class="row g-0 w-100 text-center">
+      <div class="col-6 p-3 d-flex align-baseline">
+        <button
+          class="btn btn-primary rounded fs-5 p-2"
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          [disabled]="!permissions.length || !permissions[0].canCreate"
+        >
+          <i class="bi bi-shield-plus"></i>
+          إضافة صلاحية
+        </button>
+      </div>
+
+      <div class="col-6 p-3 fw-bold text-end">
+        <h4>الصلاحيات</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<p-table
+  #dt2
+  [value]="Roles"
+  dataKey="id"
+  [rows]="10"
+  [rowsPerPageOptions]="[5, 10, 50]"
+  [paginator]="true"
+  [loading]="loading"
+  [globalFilterFields]="['name']"
+  [tableStyle]="{ 'min-width': '75rem' }"
+>
+  <ng-template pTemplate="caption">
+    <div class="d-flex justify-content-between">
+      <button
+        label="Clear"
+        (click)="clear(dt2)"
+        class="btn btn-outline-danger rounded fs-5 text-center"
+      >
+        <i class="bi bi-arrow-repeat"></i>
+      </button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="bi bi-search"></i>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="searchValue"
+          (input)="onInput($event)"
+        />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>الإعدادات</th>
+
+      <th>تاريخ الإضافة</th>
+      <th>إسم الصلاحية</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-role>
+    <tr>
+      <td>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="changeIdVal(role.id)"
+          [disabled]="!permissions.length || !permissions[0].canWrite"
+        >
+          <i class="bi bi-pen"></i>
+        </button>
+        <button
+          [disabled]="!permissions.length || !permissions[0].canDelete"
+          class="btn btn-danger mx-1"
+          (click)="Delete(role.id)"
+        >
+          <i class="bi bi-trash2"></i>
+        </button>
+        <button
+          class="btn btn-warning mx-1"
+          [routerLink]="['permissions', role.id]"
+        >
+          <i class="bi bi-sliders"></i>
+        </button>
+      </td>
+
+      <td>
+        {{ role.createdDate }}
+      </td>
+      <td>
+        {{ role.name }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td class="text-center" colspan="7">لم يتم إيجاد الصلاحية</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<app-dialog [id]="DialogId" (roleAdded)="onRoleAdded()"></app-dialog>
+<div class="card flex justify-content-center">
+  <p-toast />
+</div>
+<!-- ------------------------------------------------------------ -->
