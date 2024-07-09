@@ -49,7 +49,7 @@ h4 {
   max-width: 264px;
   min-width: 264px;
   /* background: var(--bs-dark); */
-  background-color: #709ABF;
+  background-color: #121213;
   position: fixed;
   right: 0;
   top: 0;
@@ -65,7 +65,7 @@ h4 {
   transition: all 0.35s ease-in-out;
   width: 100%;
   /* background: var(--bs-dark-bg-subtle); */
-  background: #f1f1f1;
+  background: #d4d4d4;
   margin-right: 264px;
 }
 
@@ -276,29 +276,28 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
   color: #fff;
 }
 
-
-
 /************************************************************************/
 
-.track-logo{
-  text-shadow:
-        -1px -1px 0 #fff, /* Top left shadow */
-        1px -1px 0 #fff, /* Top right shadow */
-        -1px 1px 0 #fff, /* Bottom left shadow */
-        1px 1px 0 #fff; /* Bottom right shadow */;
+.track-logo {
+  text-shadow: -1px -1px 0 #fff, /* Top left shadow */ 1px -1px 0 #fff,
+    /* Top right shadow */ -1px 1px 0 #fff,
+    /* Bottom left shadow */ 1px 1px 0 #fff; /* Bottom right shadow */
   color: #f4955f;
 }
-#sidebar{
-  border-radius: 25px 0 0 25px;
+#sidebar {
+  border-radius: 20px 0 0 20px;
 }
-.wrapper{
+.wrapper {
   background-color: #f1f1f1;
 }
-.menu-link-active{
-  background-color: #e5955feb;
+li {
+  margin-top: 5px;
+}
+.menu-link-active {
+  background-color: #969696;
   border-radius: 17px 0 0 17px;
 }
-.sidebar-nav li a:hover{
+.sidebar-nav li a:hover {
   background-color: #e5955feb;
   border-radius: 17px 0 0 17px;
 }

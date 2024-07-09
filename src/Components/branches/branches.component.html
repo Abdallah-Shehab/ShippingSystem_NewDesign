@@ -1,4 +1,4 @@
-<p-card class="card mt-5 mb-3">
+<!-- <p-card class="card mt-5 mb-3">
   <div class="d-flex justify-content-between">
     <button
       class="btn btn-primary rounded fs-5 p-2"
@@ -13,8 +13,31 @@
     </button>
     <span class="fs-3 fw-bold text-end">الفروع</span>
   </div>
-</p-card>
+</p-card> -->
 
+<div class="card flex-fill border-0 illustration mb-3 mt-5">
+  <div class="card-body p-0 d-flex flex-fill">
+    <div class="row g-0 w-100 text-center">
+      <div class="col-6 p-3 d-flex align-baseline">
+        <button
+          class="btn btn-primary rounded fs-5 p-2"
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          [disabled]="!permissions.length || !permissions[0].canCreate"
+        >
+          <i class="bi bi-plus-circle"></i>
+          إضافة فرع
+        </button>
+      </div>
+
+      <div class="col-6 p-3 fw-bold text-end">
+        <h4>الفروع</h4>
+      </div>
+    </div>
+  </div>
+</div>
 <p-table
   #dt2
   [value]="Branches"
@@ -36,12 +59,12 @@
         <i class="bi bi-arrow-repeat"></i>
       </button>
       <span class="p-input-icon-left ml-auto">
-        <i class="bi bi-search"></i>
         <input
           pInputText
           type="text"
           [(ngModel)]="searchValue"
           (input)="onInput($event)"
+          placeholder="البحث"
         />
       </span>
     </div>
@@ -97,7 +120,11 @@
   </ng-template>
 </p-table>
 
-<app-dialog [id]="DialogId" (branchAdded)="onBranchAdded()" [governments]="governments"></app-dialog>
+<app-dialog
+  [id]="DialogId"
+  (branchAdded)="onBranchAdded()"
+  [governments]="governments"
+></app-dialog>
 <div class="card flex justify-content-center">
   <p-toast />
 </div>

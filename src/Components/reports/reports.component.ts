@@ -92,6 +92,16 @@ this.globalService.loadGlobalData().then((permissions) => {
       error:(err)=>console.log(err),
     })
   }
+  clear(table: Table) {
+    table.clear();
+    this.searchValue="";
+}
 
+onInput(event: Event) {
+  const inputElement = event.target as HTMLInputElement;
+  if (this.dt2) {
+    this.dt2.filterGlobal(inputElement.value, 'contains');
+  }
+}
 
 }

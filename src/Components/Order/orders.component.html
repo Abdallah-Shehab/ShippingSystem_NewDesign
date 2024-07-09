@@ -1,16 +1,23 @@
-<p-card class="card mt-5 mb-3 text-end">
-  <div class="d-flex justify-content-between text-end">
-    <button
-      class="btn btn-primary rounded fs-5"
-      [routerLink]="['addorder']"
-      *ngIf="!permissions.length || permissions[0].canCreate"
-    >
-      <i class="bi bi-plus-circle"></i>
-      إضافة طلب
-    </button>
-    <span class="fs-3 fw-bold text-end">الطلبات</span>
+<div class="card flex-fill border-0 illustration mb-3 mt-5">
+  <div class="card-body p-0 d-flex flex-fill">
+    <div class="row g-0 w-100 text-center">
+      <div class="col-6 p-3 d-flex align-baseline">
+        <button
+          class="btn btn-primary rounded fs-5"
+          [routerLink]="['addorder']"
+          *ngIf="!permissions.length || permissions[0].canCreate"
+        >
+          <i class="bi bi-plus-circle"></i>
+          إضافة طلب
+        </button>
+      </div>
+
+      <div class="col-6 p-3 fw-bold text-end">
+        <h4>الطلبات</h4>
+      </div>
+    </div>
   </div>
-</p-card>
+</div>
 
 <p-table
   #dt2
@@ -32,7 +39,7 @@
         (click)="clear(dt2)"
         class="btn btn-outline-danger rounded text-center"
       >
-        <i class="bi bi-arrow-repeat fs-5"> حذف البحث</i>
+        <i class="bi bi-arrow-repeat fs-6"> حذف البحث</i>
       </button>
       <span class="p-input-icon-left ml-auto">
         <input
@@ -43,24 +50,13 @@
           placeholder="البحث"
         />
       </span>
-
-      <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
-        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-          <p-dropdown
-            [(ngModel)]="statuses.values"
-            [options]="statuses"
-            (onChange)="filter($event.value)"
-            placeholder="اختر الحالة"
-            [showClear]="false"
-            class="fs-2"
-          >
-          </p-dropdown>
-        </ng-template>
-      </p-columnFilter>
     </div>
 
-    <button class="btn btn-primary p-2 my-2" (click)="PrintPagePDF()">
+    <button class="btn btn-primary p-2 my-2 mx-3" (click)="exportPdf()">
       PDF
+    </button>
+    <button class="btn btn-warning p-2 my-2" (click)="exportExcel()">
+      Excel
     </button>
   </ng-template>
 
@@ -83,7 +79,7 @@
   <ng-template pTemplate="body" let-order>
     <tr #tableRow>
       <td>
-        <button class="btn btn-info" (click)="printTableRowAsPdf()">
+        <button class="btn btn-info" (click)="printOrder(order.id)">
           <i class="bi bi-printer-fill"></i>
         </button>
       </td>
@@ -92,7 +88,6 @@
           class="btn btn-primary mx-3"
           [disabled]="!permissions.length || !permissions[0].canWrite"
         >
-          <!-- [routerLink]="['/employee/', emp.id]" -->
           <i class="bi bi-pen"></i>
         </button>
         <button
@@ -111,7 +106,8 @@
           (click)="changeIdStatus(order.id)"
           [disabled]="
             RoleName == 'تاجر' ||
-            !permissions.length || !permissions[0].canWrite
+            !permissions.length ||
+            !permissions[0].canWrite
           "
         >
           تغيير الحالة
