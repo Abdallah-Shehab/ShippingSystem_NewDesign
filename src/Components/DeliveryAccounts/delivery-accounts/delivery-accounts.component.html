@@ -1,17 +1,23 @@
-<p-card class="card mt-5 mb-3">
-  <div class="d-flex justify-content-between">
-    <button
-      class="btn btn-primary rounded fs-5"
-      [routerLink]="['AddDeliveryAccount']"
-      [disabled]="!permissions.length || !permissions[0].canCreate"
-    >
-      <i class="bi bi-person-plus"></i>
-      إضافة مندوب
-    </button>
-    <span class="fs-3 fw-bold text-end">المناديب</span>
-  </div>
-</p-card>
+<div class="card flex-fill border-0 illustration mb-3 mt-5">
+  <div class="card-body p-0 d-flex flex-fill">
+    <div class="row g-0 w-100 text-center">
+      <div class="col-6 p-3 d-flex align-baseline">
+        <button
+          class="btn btn-primary rounded fs-5"
+          [routerLink]="['AddDeliveryAccount']"
+          [disabled]="!permissions.length || !permissions[0].canCreate"
+        >
+          <i class="bi bi-person-plus"></i>
+          إضافة مندوب
+        </button>
+      </div>
 
+      <div class="col-6 p-3 fw-bold text-end">
+        <h4>المناديب</h4>
+      </div>
+    </div>
+  </div>
+</div>
 <p-table
   #dt2
   [value]="deliveryAccounts"
