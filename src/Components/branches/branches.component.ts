@@ -12,7 +12,8 @@ import { MessageService } from 'primeng/api';
 import { IBranch } from '../../Models/i-branch';
 import { GlobalService } from '../../Services/global.service';
 import { SharedModule } from '../../shared/shared.module';
-
+import { IGovernment } from '../../Models/i-government';
+import { GovernmentsService } from '../../Services/governments.service';
 @Component({
   selector: 'app-branches',
   standalone: true,
@@ -28,7 +29,12 @@ export class BranchesComponent {
   @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
   permissions:any =[];
-  constructor(public branchesService: BranchesService,private messageService: MessageService,    private globalService:GlobalService) {
+  governments!:IGovernment[]
+  constructor(public branchesService: BranchesService,
+    private messageService: MessageService,
+        private globalService:GlobalService,
+        private governmentService:GovernmentsService) {
+
  
   }
 
@@ -45,6 +51,15 @@ export class BranchesComponent {
   }
   changeIdVal(id:number){
     this.DialogId=id;
+    this.governmentService.GetAllGovernments().subscribe({
+      next: (data) => {
+        this.governments = data as IGovernment[];
+      },
+      error: (err) => {
+        this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد محافظات' });
+
+      }
+    });
   }
   clear(table: Table) {
     table.clear();
@@ -75,12 +90,20 @@ export class BranchesComponent {
       next: (data: any) => {
         this.Branches = this.Branches.filter((i: any) => i.id !== id);
         this.messageService.add({ severity: 'error', summary: 'تم الحذف', detail: 'تم حذف الفرع ' });
-
+        this.governmentService.GetAllGovernmentsNoBranches().subscribe({
+          next: (data) => {
+            this.governments = data as IGovernment[];
+          },
+          error: (err) => {
+            this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد محافظات' });
+    
+          }
+        });
       },
       error: (err) => console.log(err)
     });
+    
   }
-
  async onBranchAdded() {
    
   this.branchesService.GetAllBranches().subscribe({

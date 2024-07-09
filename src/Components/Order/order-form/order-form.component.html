@@ -74,7 +74,7 @@
       id="email"
     />
     <div class="danger" [hidden]="orderForm.controls['email'].valid || orderForm.controls['email'].untouched">
-      <small *ngIf="orderForm.controls['email'].errors?.['required']">الرجاء ادخال البريد الالكتروني</small>
+      <small>الرجاء ادخال البريد الالكتروني</small>
     </div>
   </div>
 
@@ -129,6 +129,7 @@
       <p-inputSwitch
         inputId="switch1"
         class="d-block mt-3"
+        formControlName="deliveryToVillage"
       ></p-inputSwitch>
     </div>
 
@@ -257,6 +258,7 @@
         id="totalWeight"
         placeholder="إجمالي الوزن(كجم)"
       />
+      <small class="primary"> الزيادة عن 10كجم يتم إضافة 5 ج علي كل 1 كجم إضافي</small>
       <div class="danger" [hidden]="orderForm.controls['totalWeight'].valid || orderForm.controls['totalWeight'].untouched">
         <small *ngIf="orderForm.controls['totalWeight'].errors?.['required']">Total Weight is Required</small>
       </div>

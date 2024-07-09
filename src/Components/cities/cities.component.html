@@ -50,7 +50,8 @@
     <tr>
       <th></th>
       <th>الإعدادات</th>
-
+      <th>pickup سعر توصيل ال</th>
+      <th>سعر التوصيل العادي</th>
       <th>الحالة</th>
       <th>المحافظة</th>
       <th>إسم المدينة</th>
@@ -78,14 +79,13 @@
         >
           <i class="bi bi-pen"></i>
         </button>
-        <!-- <button
-            class="btn btn-warning mx-1"
-            [routerLink]="['permissions', branch.id]"
-          >
-            <i class="bi bi-sliders"></i>
-          </button> -->
       </td>
-
+      <td>
+        {{city.pickupShippingCost}}
+      </td>
+      <td>
+        {{city.normalShippingCost}}
+      </td>
       <td>
         <p-inputSwitch
           [(ngModel)]="city.status"

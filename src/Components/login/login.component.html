@@ -38,22 +38,20 @@
                         <p
                           *ngIf="
                             deliveryLoginForm.get('Email')?.getError('required')
-                          "
+                            "
                           class="error no-margin"
                         >
                           الحساب مطلوب
                         </p>
                         <p
-                          *ngIf="
-                            deliveryLoginForm.get('Email')?.getError('email')
-                          "
+                          *ngIf="deliveryLoginForm.get('Email')?.getError('email')"
                           class="error no-margin"
                         >
                           هذا ليس الشكل الصحيح للحساب
                         </p>
                       </div>
                       <div
-                        *ngIf="deliveryLoginForm.errors?.['invalidEmailLogin']"
+                        *ngIf="deliveryLoginForm.get('Email')?.errors?.['invalidEmailLogin']"
                         class="error"
                       >
                         هذا الحساب غير موجود ، من فضلك اعد المحاولة
@@ -77,17 +75,15 @@
                       >
                         <p
                           *ngIf="
-                            deliveryLoginForm
-                              .get('Password')
-                              ?.getError('required')
-                          "
+                            deliveryLoginForm.get('Password')?.getError('required')
+                            "
                           class="error no-margin"
                         >
                           كلمة السر مطلوبة
                         </p>
                       </div>
                       <div
-                        *ngIf="deliveryLoginForm.errors?.['invalidPasswordLogin']"
+                        *ngIf="deliveryLoginForm.get('Email')?.errors?.['invalidPasswordLogin']"
                         class="error"
                       >
                         كلمة السر خاطئة، من فضلك اعد المحاولة
@@ -95,20 +91,19 @@
                     </div>
                   </div>
                 </fieldset>
-
+              
                 <!-- Custom Validator Error Message -->
                 <div class="Validator-block">
                   <div
-                    *ngIf="deliveryLoginForm.errors?.['somethingWrong']"
-                    class="error"
+                  *ngIf="deliveryLoginForm.get('Password')?.errors?.['somethingWrong']"
+                  class="error"
                   >
                     حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
                   </div>
                 </div>
-
+              
                 <button
                   type="submit"
-                  [disabled]="deliveryLoginForm.invalid"
                   class="btn-login"
                 >
                   تسجيل الدخول
@@ -144,9 +139,7 @@
                         "
                       >
                         <p
-                          *ngIf="
-                            empLoginForm.get('Email')?.getError('required')
-                          "
+                          *ngIf="empLoginForm.get('Email')?.getError('required')"
                           class="error no-margin"
                         >
                           الحساب مطلوب
@@ -182,9 +175,7 @@
                         "
                       >
                         <p
-                          *ngIf="
-                            empLoginForm.get('Password')?.getError('required')
-                          "
+                          *ngIf="empLoginForm.get('Password')?.getError('required')"
                           class="error no-margin"
                         >
                           كلمة السر مطلوبة
@@ -199,7 +190,7 @@
                     </div>
                   </div>
                 </fieldset>
-
+              
                 <!-- Custom Validator Error Message -->
                 <div class="Validator-block">
                   <div
@@ -209,10 +200,9 @@
                     حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
                   </div>
                 </div>
-
+              
                 <button
                   type="submit"
-                  [disabled]="empLoginForm.invalid"
                   class="btn-login"
                 >
                   تسجيل الدخول
@@ -256,9 +246,7 @@
                           الحساب مطلوب
                         </p>
                         <p
-                          *ngIf="
-                            merchantLoginForm.get('Email')?.getError('email')
-                          "
+                          *ngIf="merchantLoginForm.get('Email')?.getError('email')"
                           class="error no-margin"
                         >
                           هذا ليس الشكل الصحيح للحساب
@@ -289,9 +277,7 @@
                       >
                         <p
                           *ngIf="
-                            merchantLoginForm
-                              .get('Password')
-                              ?.getError('required')
+                            merchantLoginForm.get('Password')?.getError('required')
                           "
                           class="error no-margin"
                         >
@@ -307,7 +293,7 @@
                     </div>
                   </div>
                 </fieldset>
-
+              
                 <!-- Custom Validator Error Message -->
                 <div class="Validator-block">
                   <div
@@ -317,10 +303,9 @@
                     حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
                   </div>
                 </div>
-
+              
                 <button
                   type="submit"
-                  [disabled]="merchantLoginForm.invalid"
                   class="btn-login"
                 >
                   تسجيل الدخول
