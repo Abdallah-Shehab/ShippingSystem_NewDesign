@@ -23,7 +23,7 @@ export class DialogComponent implements OnChanges ,OnInit{
   @Output() cityAdded: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('exampleModal') exampleModal!: ElementRef;
-  cityObj:IcityID={name:"",status:true,id:0,governmentID:0,normalShippingCost:1,pickupShippingCost:2};
+  cityObj:IcityID={name:"",status:true,id:0,governmentID:0,normalShippingCost:0,pickupShippingCost:0};
   governments!:IGovernment[];
   isValid:boolean=true;
   constructor(private cityService: CityService,private governmetnService :GovernmentsService, public router:Router,private messageService: MessageService) {
@@ -35,7 +35,6 @@ export class DialogComponent implements OnChanges ,OnInit{
         this.governments = data as IGovernment[];
       },
       error: (err) => {
-        console.log(err);
         this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد محافظات' });
 
       }
@@ -48,9 +47,7 @@ export class DialogComponent implements OnChanges ,OnInit{
           this.cityObj=data;          
         },
         error: (err) => {
-          console.log(err);
           this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ ، حاول مره اخرى' });
-
         }
       });
     }
@@ -59,14 +56,25 @@ export class DialogComponent implements OnChanges ,OnInit{
 
 
   CityControl() {
-    if(this.cityObj.name==""){
+
+    console.log("name "+this.cityObj.name);
+    console.log("normal "+this.cityObj.normalShippingCost);
+    console.log("pickup "+this.cityObj.pickupShippingCost);
+    
+    if(this.cityObj.name=="" || this.cityObj.normalShippingCost ==0 ||  this.cityObj.pickupShippingCost ==0){
       //validation on name input
+     console.log("isValid false")
       this.isValid=false;
     }
     else{
       this.isValid=true;
+      console.log("isValid true")
 
       if (this.id == 0) {
+        console.log(this.cityObj)
+        console.log("name2 "+this.cityObj.name);
+    console.log("normal2 "+this.cityObj.normalShippingCost);
+    console.log("pickup2 "+this.cityObj.pickupShippingCost);
         this.cityService.AddCity(this.cityObj).subscribe({
           next: (data) => {
             console.log('government added:', data);
@@ -112,8 +120,8 @@ export class DialogComponent implements OnChanges ,OnInit{
       status:true,
       id: 1,
       governmentID:1,
-      normalShippingCost:1,//here i want to edite that 
-      pickupShippingCost:1//here i want to edite that 
+      normalShippingCost:0,//here i want to edite that 
+      pickupShippingCost:0//here i want to edite that 
     };
   }
   closeModal() {

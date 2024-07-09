@@ -1,4 +1,5 @@
- 
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import { AfterContentInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
  
 import { Table } from 'primeng/table';
@@ -9,8 +10,11 @@ import { DialogComponent } from './dialog/dialog.component';
 import { PdfGeneratorService } from '../../Services/pdf-generator.service';
 import { GlobalService } from '../../Services/global.service';
 import { SharedModule } from '../../shared/shared.module';
- 
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
 
  
 @Component({
@@ -146,8 +150,84 @@ updateOrders(){
   })
 }
 
-PrintPagePDF(){
-  window.print();
+
+
+
+exportPdf() {
+  const doc = new jsPDF('l', 'mm', 'a4');
+
+  const head = [['City', 'Client Name', 'Created Date', 'Delivery Name', 'Delivery Price', 'Email', 'Government', 'Merchant Name', 'Notes', 'Phone One', 'Phone Two', 'Status', 'Street And Village', 'Total Price', 'Total Weight']];
+
+  autoTable(doc, { 
+    head: head, 
+    body: this.toPdfFormat(this.Orders), 
+    didDrawCell: (data) => { }, 
+  });
+
+  doc.save('orders.pdf');
+}
+
+toPdfFormat(orders: any[]) {
+  let data = [];
+  for (var i = 0; i < orders.length; i++) {
+    data.push([
+      orders[i].city,
+      orders[i].clientName,
+      orders[i].createdDate,
+      orders[i].deliveryName,
+      orders[i].deliveryPrice,
+      orders[i].email,
+      orders[i].government,
+      orders[i].merchantName,
+      orders[i].notes,
+      orders[i].phoneOne,
+      orders[i].phoneTwo,
+      orders[i].status,
+      orders[i].streetAndVillage,
+      orders[i].totalPrice,
+      orders[i].totalWeight
+    ]);
+  }
+  return data;
+}
+
+
+printOrder(orderId: number) {
+  const order = this.Orders.find((o:any) => o.id === orderId);
+  if (!order) {
+    console.error('Order not found!');
+    return;
+  }
+
+  const doc = new jsPDF('l', 'mm', 'a4');
+
+  const head = [['City', 'Client Name', 'Created Date', 'Delivery Name', 'Delivery Price', 'Email', 'Government', 'Merchant Name', 'Notes', 'Phone One', 'Phone Two', 'Status', 'Street And Village', 'Total Price', 'Total Weight']];
+
+  autoTable(doc, { 
+    head: head, 
+    body: this.toPdfFormat([order]), 
+    didDrawCell: (data) => { }, 
+  });
+
+  doc.save(`order_${orderId}.pdf`);
+}
+
+exportExcel() {
+  const worksheet = XLSX.utils.json_to_sheet(this.Orders);
+  const workbook = {
+    Sheets: { data: worksheet },
+    SheetNames: ['data']
+  };
+  const excelBuffer: any = XLSX.write(workbook, {
+    bookType: 'xlsx',
+    type: 'array',
+  });
+  this.saveAsExcelFile(excelBuffer, 'orders');
+}
+
+private saveAsExcelFile(buffer: any, fileName: string): void {
+  const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
+  FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
 }
 
 }

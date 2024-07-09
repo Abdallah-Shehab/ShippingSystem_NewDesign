@@ -32,7 +32,7 @@
         (click)="clear(dt2)"
         class="btn btn-outline-danger rounded text-center"
       >
-        <i class="bi bi-arrow-repeat fs-5"> حذف البحث</i>
+        <i class="bi bi-arrow-repeat fs-6"> حذف البحث</i>
       </button>
       <span class="p-input-icon-left ml-auto">
         <input
@@ -43,24 +43,13 @@
           placeholder="البحث"
         />
       </span>
-
-      <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
-        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-          <p-dropdown
-            [(ngModel)]="statuses.values"
-            [options]="statuses"
-            (onChange)="filter($event.value)"
-            placeholder="اختر الحالة"
-            [showClear]="false"
-            class="fs-2"
-          >
-          </p-dropdown>
-        </ng-template>
-      </p-columnFilter>
     </div>
 
-    <button class="btn btn-primary p-2 my-2" (click)="PrintPagePDF()">
+    <button class="btn btn-primary p-2 my-2 mx-3" (click)="exportPdf()">
       PDF
+    </button>
+    <button class="btn btn-warning p-2 my-2" (click)="exportExcel()">
+      Excel
     </button>
   </ng-template>
 
@@ -83,7 +72,7 @@
   <ng-template pTemplate="body" let-order>
     <tr #tableRow>
       <td>
-        <button class="btn btn-info" (click)="printTableRowAsPdf()">
+        <button class="btn btn-info" (click)="printOrder(order.id)">
           <i class="bi bi-printer-fill"></i>
         </button>
       </td>
@@ -92,7 +81,6 @@
           class="btn btn-primary mx-3"
           [disabled]="!permissions.length || !permissions[0].canWrite"
         >
-          <!-- [routerLink]="['/employee/', emp.id]" -->
           <i class="bi bi-pen"></i>
         </button>
         <button
@@ -111,7 +99,8 @@
           (click)="changeIdStatus(order.id)"
           [disabled]="
             RoleName == 'تاجر' ||
-            !permissions.length || !permissions[0].canWrite
+            !permissions.length ||
+            !permissions[0].canWrite
           "
         >
           تغيير الحالة

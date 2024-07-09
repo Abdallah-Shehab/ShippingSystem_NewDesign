@@ -36,12 +36,12 @@
         <i class="bi bi-arrow-repeat"></i>
       </button>
       <span class="p-input-icon-left ml-auto">
-        <i class="bi bi-search"></i>
         <input
           pInputText
           type="text"
           [(ngModel)]="searchValue"
           (input)="onInput($event)"
+          placeholder="البحث"
         />
       </span>
     </div>
