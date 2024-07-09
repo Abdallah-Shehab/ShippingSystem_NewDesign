@@ -35,7 +35,8 @@
     </div>
   </div>
   <!-- Table Element -->
-  <div class="card border-0 mt-5">
+
+  <div class="card border-0 mt-5" *ngIf="global.roleName != 'Admin'">
     <div class="card-header">
       <h5 class="card-title text-end p-3">الطلبات الخاصة بى</h5>
     </div>
@@ -43,29 +44,19 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th>تاريخ الإضافة</th>
+
+            <th>الحالة</th>
+            <th>المدينة</th>
+            <th>رقم الطلب</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>twitter</td>
+          <tr *ngFor="let order of orders">
+            <th>{{ order.createdDate }}</th>
+            <th>{{ order.status }}</th>
+            <th>{{ order.cityt }}</th>
+            <th>{{ order.id }}</th>
           </tr>
         </tbody>
       </table>
