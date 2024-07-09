@@ -30,7 +30,9 @@ export class CitiesComponent {
     @ViewChild('dt2') dt2!: Table;
     searchValue: string | undefined;
     permissions:any =[];
-    constructor(public cityService: CityService,private messageService: MessageService,    private globalService:GlobalService) {
+    constructor(public cityService: CityService,
+      private messageService: MessageService,
+          private globalService:GlobalService) {
 
   
     }
@@ -103,7 +105,6 @@ export class CitiesComponent {
       console.log('Switch state:', event.checked);
       this.cityService.ChangeStatus(id).subscribe({
         next:(data)=>{
-          console.log(data);
           this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم تعديل الحالة ' });
         },
         error:(err)=>{console.log(err)

@@ -130,9 +130,28 @@
   font-style: normal;
   box-sizing: border-box;
 }
+.logo{
+  position: absolute;
+  left: -11px;
+  top: -75px;
+  text-align: center;
+}
+.logo div{
+  position: absolute;
+  left: 25%;
+  bottom: 0;
+}
 .loginLogo {
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
+}
+.track-logo{
+  /* text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff, 
+        -1px 1px 0 #fff, 
+        1px 1px 0 #fff; ; */
+  color: #f4955f;
 }
 .formContainer {
   width: 50%;
@@ -140,6 +159,16 @@
   justify-content: center;
   border-radius: 10px;
 }
+
+
+
+
+
+
+/**************************************************************/
+      /******************* old design *******************/
+/**************************************************************/
+
 .btns-switch {
   width: fit-content !important;
   background-color: transparent !important;
@@ -280,12 +309,12 @@ margin-top: 50px; */
 
 .btn-login {
   color: #fbfdff;
-  background: rgb(2 65 129);
+  background: #377799;
   transform: translateX(-30%);
 }
 
 .btn-login:hover {
-  background: rgb(0 44 97);
+  background: #709abf;
   cursor: pointer;
 }
 
@@ -307,6 +336,24 @@ body {
   position: relative;
   height: 100%;
 }
+
+body{
+  background-color: #709ABF;
+}
+/* body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  background: #000428; 
+  background: -webkit-linear-gradient(to right, #000428, #004e92);
+  background: linear-gradient(to right, #000428, #004e92); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+} */
 
 .swiper {
   width: 240px;

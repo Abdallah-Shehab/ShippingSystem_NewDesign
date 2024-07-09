@@ -97,7 +97,7 @@
   </ng-template>
 </p-table>
 
-<app-dialog [id]="DialogId" (branchAdded)="onBranchAdded()"></app-dialog>
+<app-dialog [id]="DialogId" (branchAdded)="onBranchAdded()" [governments]="governments"></app-dialog>
 <div class="card flex justify-content-center">
   <p-toast />
 </div>

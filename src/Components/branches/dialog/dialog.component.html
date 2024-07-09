@@ -40,6 +40,9 @@
               name="governmentID"
               aria-label="Default select example"
             >
+            <option disabled selected [value]="0">
+              اختر محافظة
+            </option>
               <option *ngFor="let gov of governments" [value]="gov.id">
                 {{ gov.name }}
               </option>

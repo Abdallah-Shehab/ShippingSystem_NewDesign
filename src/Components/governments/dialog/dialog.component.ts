@@ -24,7 +24,9 @@ export class DialogComponent implements OnChanges {
 
   isValid:boolean=true;
 
-  constructor(private governmentService: GovernmentsService, public router:Router,private messageService: MessageService) {
+  constructor(private governmentService: GovernmentsService,
+     public router:Router,
+     private messageService: MessageService) {
   
   }
 

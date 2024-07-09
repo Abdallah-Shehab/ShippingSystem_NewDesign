@@ -14,6 +14,9 @@ export class GovernmentsService {
    GetAllGovernments() {
     return this.httpClient.get(`${this.apiURl}`);
   }
+   GetAllGovernmentsNoBranches() {
+    return this.httpClient.get(`${this.apiURl}/NoBranch`);
+  }
   GetByID(id:number) :Observable<any>{
     return this.httpClient.get(`${this.apiURl}/${id}` );
 

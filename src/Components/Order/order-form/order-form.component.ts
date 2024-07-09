@@ -19,7 +19,8 @@ import { Router } from '@angular/router';
 import { OrderRead } from '../../../Models/order-read';
 import { GlobalService } from '../../../Services/global.service';
 import { Imerchant } from '../../../Models/imerchant';
-
+import { MessageService } from 'primeng/api';
+import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-order-form',
@@ -33,6 +34,7 @@ import { Imerchant } from '../../../Models/imerchant';
     InputTextModule,
     ReactiveFormsModule,
     CardModule,
+    SharedModule
   ]
 })
 export class OrderFormComponent implements OnInit {
@@ -54,18 +56,18 @@ export class OrderFormComponent implements OnInit {
   totalPriceOrder!:number;
   countProducts!:number;
   dataDisplayInAleart!:OrderRead;
-  constructor(private fb: FormBuilder, private orderService: OrderServiceService, private merchantService: MerchantService,private router:Router,private globalService:GlobalService) {
+  constructor(private fb: FormBuilder,
+    private messageService: MessageService, private orderService: OrderServiceService, private merchantService: MerchantService,private router:Router,private globalService:GlobalService) {
     this.orderForm = this.fb.group({
       clientName: ['', Validators.required],
-      // totalPrice: [this.totalPriceOfProducts, Validators.required],
-      // totalWeight: [this.totalWeightProducts, Validators.required],
-      totalPrice: [{value: this.totalPriceOfProducts, disabled: true}, Validators.required],//===================
+     totalPrice: [{value: this.totalPriceOfProducts, disabled: true}, Validators.required],//===================
       totalWeight: [{value: this.totalWeightProducts, disabled: true}, Validators.required],
       phoneOne: ['', Validators.required],
       phoneTwo: [''],
       email: ['', [Validators.required, Validators.email]],
       notes: [''],
-      streetAndVillage: ['', Validators.required],
+      streetAndVillage: [{ value: '', disabled: true } ],
+      deliveryToVillage: [false],
       merchantID: [this.merchantID, Validators.required],
       shippingTypeID: ["default", [this.defaultSelectionValidator]],
       paymentTypeID: ["default", [this.defaultSelectionValidator]],
@@ -74,17 +76,15 @@ export class OrderFormComponent implements OnInit {
       governmentID: ["default", [this.defaultSelectionValidator]],
       cityID: ["default", [this.defaultSelectionValidator]],
       deliveryTypeID: ["default", [this.defaultSelectionValidator]],
-      // merchantPhone: [''],
-      // merchantAddress: ['']
       merchantPhone: [{value:'', disabled: true}, Validators.required],
       merchantAddress: [{value: '', disabled: true}, Validators.required],
     });
 
     this.merchantID=globalService.globalVariable.id;
     this.orderForm.patchValue({
-     merchantID:1,
+     merchantID:this.merchantID, //sure this return merchant id
     });
-    console.log("merchant ID"+this.merchantID);
+    console.log("merchant ID "+this.merchantID);
 
     this.loadInitialData();
   }
@@ -104,6 +104,14 @@ export class OrderFormComponent implements OnInit {
         console.log(error);
       }
     });
+
+    this.orderForm.get('deliveryToVillage')?.valueChanges.subscribe(checked => {
+      if (checked) {
+        this.orderForm.get('streetAndVillage')?.enable();
+      } else {
+        this.orderForm.get('streetAndVillage')?.disable();
+      }
+    });
     console.log('try to get data for merchant ');
 //===================================================================================================//
     this.merchantService.getMerchantAccountById(this.merchantID).subscribe({
@@ -118,6 +126,7 @@ export class OrderFormComponent implements OnInit {
     });
   }
 
+  
   @HostListener('mouseover', ['$event.target'])
   onMouseOver(target: EventTarget) {
     if ((target as HTMLElement).tagName === 'INPUT') {
@@ -187,7 +196,6 @@ export class OrderFormComponent implements OnInit {
         console.log('cities'+this.cities);
       },
       error: (error) => {
-        console.log(error);
       }
     });
   }
@@ -202,7 +210,8 @@ export class OrderFormComponent implements OnInit {
       this.Products.push(this.createProductFormGroup());
       this.updateTotals();
     } else {
-      alert('Please fill in the current product details before adding a new one.');
+      this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'لا يوجد فروع' })
+    //===================ask Abdallah===============================
     }
   }
 
@@ -227,13 +236,11 @@ export class OrderFormComponent implements OnInit {
     const productFormArray = this.Products as FormArray;
 
     productFormArray.controls.forEach((control: AbstractControl) => {
-     
+     //====================check to delete it ==========
       const price = (parseInt(control.get('price')?.value) || 0) * (parseInt(control.get('quantity')?.value) || 0) ;
       const weight = parseInt(control.get('weight')?.value, 10) || 0;
       this.totalPriceOfProducts += price;
       this.totalWeightProducts += weight;
-      console.log( this.totalPriceOfProducts)
-      console.log( this.totalWeightProducts)
     });
 
     this.orderForm.patchValue({
@@ -261,11 +268,12 @@ export class OrderFormComponent implements OnInit {
 
   AddNewOrder() {
     this.orderForm.markAllAsTouched();
-   
+   console.log(this.orderForm)
 
      // Temporarily enable the controls before reading the form values
   this.orderForm.get('totalPrice')?.enable();
   this.orderForm.get('totalWeight')?.enable();
+  this.orderForm.get('streetAndVillage')?.enable();
     if (this.orderForm.valid) {
       this.order = this.orderForm.value as InewOrder;
       console.log(this.order);
@@ -274,6 +282,7 @@ export class OrderFormComponent implements OnInit {
           this.dataDisplayInAleart = data as OrderRead;
           this.totalPriceDelivery=this.dataDisplayInAleart.deliveryPrice;
           this.totalPriceOrder=this.dataDisplayInAleart.paiedMoney;
+          console.log("data when ");
           console.log(data);
           this.sweetaleart()
         },
@@ -285,7 +294,7 @@ export class OrderFormComponent implements OnInit {
       console.log('Form has validation errors:', this.orderForm);
     }
   }
-
+//===========================Ask Abdallah
   sweetaleart(){
     Swal.fire({
       title: 'Order Added Successfull',
