@@ -34,7 +34,9 @@
               name="name"
             />
             <span *ngIf="!isValid" class="text-danger">Name is Required</span>
-            <select
+            <label for="recipient-name" class="col-form-label"
+            >المحافظة </label
+            ><select
               class="form-select mt-3"
               [(ngModel)]="cityObj.governmentID"
               name="governmentID"
@@ -44,6 +46,31 @@
                 {{ gov.name }}
               </option>
             </select>
+                        
+            <label for="normalShippingCost" class="col-form-label"
+              >سعر التوصيل العادي</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="normalShippingCost"
+              [(ngModel)]="cityObj.normalShippingCost"
+              name="normalShippingCost"
+            />
+            <span *ngIf="!isValid" class="text-danger">سعر التوصيل مطلوب</span>
+            
+            <label for="pickupShippingCost" class="col-form-label"
+              >pickup سعر توصيل ال</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="pickupShippingCost"
+              [(ngModel)]="cityObj.pickupShippingCost"
+              name="pickupShippingCost"
+            />
+            <span *ngIf="!isValid" class="text-danger">سعر توصيل pickup مطلوب</span>
+          
           </div>
         </form>
       </div>

@@ -17,7 +17,10 @@ import { SharedModule } from '../../shared/shared.module';
 @Component({
   selector: 'app-governments',
   standalone: true,
-  imports: [SharedModule,DialogComponent,RouterLink,CommonModule ],
+  imports: [SharedModule,
+    DialogComponent,
+    RouterLink,
+    CommonModule ],
   templateUrl: './governments.component.html',
   styleUrl: './governments.component.css'
 })
@@ -30,7 +33,9 @@ export class GovernmentsComponent {
   searchValue: string | undefined;
 
   permissions:any =[];
-  constructor(public governmentsService: GovernmentsService,private messageService: MessageService,    private globalService:GlobalService) {
+  constructor(public governmentsService: GovernmentsService,
+    private messageService: MessageService,
+        private globalService:GlobalService) {
 
  
   }
@@ -39,7 +44,6 @@ export class GovernmentsComponent {
     this.GetAll();
     this.globalService.loadGlobalData().then((permissions) => {
       this.permissions = this.globalService.getEntitiesPermissions(permissions,"المحافظات");
-      console.log(this.permissions)
           
         }).catch((error) => {
           console.error('Error loading permissions:', error);
