@@ -48,7 +48,8 @@ h4 {
 #sidebar {
   max-width: 264px;
   min-width: 264px;
-  background: var(--bs-dark);
+  /* background: var(--bs-dark); */
+  background-color: #709ABF;
   position: fixed;
   right: 0;
   top: 0;
@@ -63,7 +64,8 @@ h4 {
   overflow: hidden;
   transition: all 0.35s ease-in-out;
   width: 100%;
-  background: var(--bs-dark-bg-subtle);
+  /* background: var(--bs-dark-bg-subtle); */
+  background: #f1f1f1;
   margin-right: 264px;
 }
 
