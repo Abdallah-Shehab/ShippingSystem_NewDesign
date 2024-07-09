@@ -54,7 +54,7 @@
     <!-- Content For Sidebar -->
     <div class="h-100">
       <div class="sidebar-logo">
-        <a href="#">Truck <span class="text-danger">Track</span></a>
+        <a href="#">Truck <span class="track-logo">Track</span></a>
       </div>
       <ul class="sidebar-nav">
         <li class="sidebar-item">
@@ -62,7 +62,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/']"
-            routerLinkActive="['text-danger']"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <i class="fa-solid fa-list pe-2"></i>
@@ -74,7 +74,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/roles']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['الإعدادات']"
           >
@@ -87,7 +87,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/employee']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['الموظفين']"
           >
@@ -102,7 +102,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/DeliveryAccounts']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['المندوبين']"
           >
@@ -116,7 +116,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/MerchantAccounts']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['التجار']"
           >
@@ -130,7 +130,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/Branches']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['الفروع']"
           >
@@ -144,7 +144,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/Governments']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['المحافظات']"
           >
@@ -158,7 +158,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/Cities']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['المدن']"
           >
@@ -172,7 +172,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/orders']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['الطلبات']"
           >
@@ -186,7 +186,7 @@
             href="#"
             class="sidebar-link fs-6"
             [routerLink]="['/report']"
-            routerLinkActive="active"
+            routerLinkActive="menu-link-active"
             [routerLinkActiveOptions]="{ exact: false }"
             *ngIf="permissions['التقارير']"
           >
@@ -197,7 +197,7 @@
         <li id="logoutButton">
           <a href="#" class="sidebar-link fs-6" (click)="logOut()">
             <!-- *ngIf="permissions['الإعدادات']" -->
-            <i class="bi bi-box-arrow-right pe-2"></i>
+            <i class="bi bi-box-arrow-right "></i>
             تسجيل الخروج
           </a>
         </li>

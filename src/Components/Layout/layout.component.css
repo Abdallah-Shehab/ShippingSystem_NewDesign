@@ -82,7 +82,7 @@ h4 {
 }
 
 .sidebar-logo a {
-  color: #e9ecef;
+  color: #fff;
   font-size: 1.15rem;
   font-weight: 600;
 }
@@ -102,7 +102,7 @@ h4 {
 
 a.sidebar-link {
   padding: 0.625rem 1.625rem;
-  color: #e9ecef;
+  color: #fff;
   position: relative;
   display: block;
   font-size: 0.875rem;
@@ -239,6 +239,7 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
 #logoutButton {
   position: absolute;
   bottom: 30px;
+  width: 100%;
 }
 
 .active {
@@ -273,4 +274,31 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
 :root[data-bs-theme="dark"] .p-datatable-footer {
   background-color: #444;
   color: #fff;
+}
+
+
+
+/************************************************************************/
+
+.track-logo{
+  text-shadow:
+        -1px -1px 0 #fff, /* Top left shadow */
+        1px -1px 0 #fff, /* Top right shadow */
+        -1px 1px 0 #fff, /* Bottom left shadow */
+        1px 1px 0 #fff; /* Bottom right shadow */;
+  color: #f4955f;
+}
+#sidebar{
+  border-radius: 25px 0 0 25px;
+}
+.wrapper{
+  background-color: #f1f1f1;
+}
+.menu-link-active{
+  background-color: #e5955feb;
+  border-radius: 17px 0 0 17px;
+}
+.sidebar-nav li a:hover{
+  background-color: #e5955feb;
+  border-radius: 17px 0 0 17px;
 }
