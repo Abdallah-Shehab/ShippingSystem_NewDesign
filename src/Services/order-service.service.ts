@@ -59,6 +59,12 @@ token :any = '';
   updateOrderStatus(id:number, status:string){
  
     return this.http.put(`${environment.apiUrl}Orders/UpdateStatus/${id}?status=${status}`,null);
+  }  
+  AssignDelivery(orderid:number, deliveryId:number){
+    
+    // https://localhost:7270/api/Orders/AssignOrderToDelivery?orderId=1&deliveryId=1
+
+    return this.http.put(`${environment.apiUrl}Orders/AssignOrderToDelivery?orderId=${orderid}&deliveryId=${deliveryId}`,null);
   }
   createOrder(order:InewOrder){
     return this.http.post(`https://localhost:7270/api/Orders`,order);

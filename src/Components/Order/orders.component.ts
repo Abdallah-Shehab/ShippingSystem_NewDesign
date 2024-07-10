@@ -12,6 +12,7 @@ import { GlobalService } from '../../Services/global.service';
 import { SharedModule } from '../../shared/shared.module';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import { DeliveryDialogComponent } from './DeliveryDialog/Deliverydialog.component';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -20,7 +21,7 @@ const EXCEL_EXTENSION = '.xlsx';
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [SharedModule,RouterLink,DialogComponent],
+  imports: [SharedModule,RouterLink,DialogComponent,DeliveryDialogComponent],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
@@ -31,8 +32,8 @@ export class OrdersComponent implements OnInit  {
 
   Orders:any=[];
   loading: boolean = true;
-  @ViewChild('dt2') dt2!: Table;
   @ViewChild('tableRow', { static: false }) tableRow!: ElementRef;
+  @ViewChild('dt2') dt2!: Table;
   searchValue: string | undefined;
   orderId:number = 0;
  
@@ -80,11 +81,27 @@ this.GetAll();
 GetAll(){
    
   Number(this.globalService.globalVariable.id)
-  this.orderService.getAllOrdersForMercahnt( Number(this.globalService.globalVariable.id)).subscribe({
-    next:(data)=>{this.Orders=data ;},
-    error:(err)=>{console.log(err); this.loading=false},
-    complete: ()=>this.loading=false
-  })
+  if(this.globalService.globalVariable.roleName=="تاجر"){
+    this.orderService.getAllOrdersForMercahnt( Number(this.globalService.globalVariable.id)).subscribe({
+      next:(data)=>{this.Orders=data ;},
+      error:(err)=>{console.log(err); this.loading=false},
+      complete: ()=>this.loading=false
+    })
+  }else if(this.globalService.globalVariable.roleName=="مندوب"){
+    this.orderService.getAllOrdersForDelivery( Number(this.globalService.globalVariable.id)).subscribe({
+      next:(data)=>{this.Orders=data ;},
+      error:(err)=>{console.log(err); this.loading=false},
+      complete: ()=>this.loading=false
+    })
+  }else{
+    this.orderService.getAllOrdersForDelivery( 0).subscribe({
+      next:(data)=>{this.Orders=data ;},
+      error:(err)=>{console.log(err); this.loading=false},
+      complete: ()=>this.loading=false
+    })
+  }
+
+
 
 }
 

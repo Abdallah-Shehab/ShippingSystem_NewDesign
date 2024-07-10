@@ -64,6 +64,7 @@
     <tr>
       <th>طباعة</th>
       <th>الإعدادات</th>
+      <th>المندوب</th>
       <th>تغيير الحالة</th>
       <th>الحالة</th>
       <th>تكلفة الطلب</th>
@@ -96,6 +97,22 @@
           [disabled]="!permissions.length || !permissions[0].canDelete"
         >
           <i class="bi bi-trash2"></i>
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#deliveryModal"
+          (click)="changeIdStatus(order.id)"
+          [disabled]="
+            RoleName == 'تاجر' ||
+            RoleName == 'مندوب' ||
+            !permissions.length ||
+            !permissions[0].canWrite
+          "
+        >
+          اختيار مندوب
         </button>
       </td>
       <td>
@@ -149,3 +166,7 @@
   <p-toast />
 </div>
 <app-dialog [id]="orderId" (statusChanged)="updateOrders()"></app-dialog>
+<app-delivery-dialog
+  [id]="orderId"
+  (deliveryAssigned)="updateOrders()"
+></app-delivery-dialog>
