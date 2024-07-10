@@ -57,6 +57,7 @@ export class UpdateMerchantAccountComponent implements OnInit {
   loadMerchantData(): void {
     this.merchantService.getMerchantAccountById(this.merchantId).subscribe({
       next: (merchant) => {
+        console.log(merchant)
         this.merchantForm.patchValue({
           password: merchant.passwordHash,
           email: merchant.email,

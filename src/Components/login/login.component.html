@@ -5,7 +5,7 @@
     <img class="loginLogo" src="assets/logos/logo (2).png" alt="" />
 
     <div class="formContainer mb-5 text-center">
-      <div class="swiper-pagination" style="width: 100%"></div>
+      <div class="swiper-pagination text-dark" style="width: 100%"></div>
     </div>
 
     <div class="swiper mySwiper mt-5">
@@ -38,13 +38,15 @@
                         <p
                           *ngIf="
                             deliveryLoginForm.get('Email')?.getError('required')
-                            "
+                          "
                           class="error no-margin"
                         >
                           الحساب مطلوب
                         </p>
                         <p
-                          *ngIf="deliveryLoginForm.get('Email')?.getError('email')"
+                          *ngIf="
+                            deliveryLoginForm.get('Email')?.getError('email')
+                          "
                           class="error no-margin"
                         >
                           هذا ليس الشكل الصحيح للحساب
@@ -75,15 +77,17 @@
                       >
                         <p
                           *ngIf="
-                            deliveryLoginForm.get('Password')?.getError('required')
-                            "
+                            deliveryLoginForm
+                              .get('Password')
+                              ?.getError('required')
+                          "
                           class="error no-margin"
                         >
                           كلمة السر مطلوبة
                         </p>
                       </div>
                       <div
-                        *ngIf="deliveryLoginForm.get('Email')?.errors?.['invalidPasswordLogin']"
+                        *ngIf="deliveryLoginForm.get('Password')?.errors?.['invalidPasswordLogin']"
                         class="error"
                       >
                         كلمة السر خاطئة، من فضلك اعد المحاولة
@@ -91,23 +95,18 @@
                     </div>
                   </div>
                 </fieldset>
-              
+
                 <!-- Custom Validator Error Message -->
                 <div class="Validator-block">
                   <div
-                  *ngIf="deliveryLoginForm.get('Password')?.errors?.['somethingWrong']"
-                  class="error"
+                    *ngIf="deliveryLoginForm.get('Password')?.errors?.['somethingWrong']"
+                    class="error"
                   >
                     حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
                   </div>
                 </div>
-              
-                <button
-                  type="submit"
-                  class="btn-login"
-                >
-                  تسجيل الدخول
-                </button>
+
+                <button type="submit" class="btn-login">تسجيل الدخول</button>
               </form>
             </div>
           </div>
@@ -139,7 +138,9 @@
                         "
                       >
                         <p
-                          *ngIf="empLoginForm.get('Email')?.getError('required')"
+                          *ngIf="
+                            empLoginForm.get('Email')?.getError('required')
+                          "
                           class="error no-margin"
                         >
                           الحساب مطلوب
@@ -175,14 +176,16 @@
                         "
                       >
                         <p
-                          *ngIf="empLoginForm.get('Password')?.getError('required')"
+                          *ngIf="
+                            empLoginForm.get('Password')?.getError('required')
+                          "
                           class="error no-margin"
                         >
                           كلمة السر مطلوبة
                         </p>
                       </div>
                       <div
-                        *ngIf="empLoginForm.errors?.['invalidPasswordLogin']"
+                        *ngIf="empLoginForm.get('Password')?.errors?.['invalidPasswordLogin']"
                         class="error"
                       >
                         كلمة السر خاطئة، من فضلك اعد المحاولة
@@ -190,7 +193,7 @@
                     </div>
                   </div>
                 </fieldset>
-              
+
                 <!-- Custom Validator Error Message -->
                 <div class="Validator-block">
                   <div
@@ -200,13 +203,8 @@
                     حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
                   </div>
                 </div>
-              
-                <button
-                  type="submit"
-                  class="btn-login"
-                >
-                  تسجيل الدخول
-                </button>
+
+                <button type="submit" class="btn-login">تسجيل الدخول</button>
               </form>
             </div>
           </div>
@@ -246,7 +244,9 @@
                           الحساب مطلوب
                         </p>
                         <p
-                          *ngIf="merchantLoginForm.get('Email')?.getError('email')"
+                          *ngIf="
+                            merchantLoginForm.get('Email')?.getError('email')
+                          "
                           class="error no-margin"
                         >
                           هذا ليس الشكل الصحيح للحساب
@@ -277,7 +277,9 @@
                       >
                         <p
                           *ngIf="
-                            merchantLoginForm.get('Password')?.getError('required')
+                            merchantLoginForm
+                              .get('Password')
+                              ?.getError('required')
                           "
                           class="error no-margin"
                         >
@@ -285,7 +287,7 @@
                         </p>
                       </div>
                       <div
-                        *ngIf="merchantLoginForm.errors?.['invalidPasswordLogin']"
+                        *ngIf="merchantLoginForm.get('Password')?.errors?.['invalidPasswordLogin']"
                         class="error"
                       >
                         كلمة السر خاطئة، من فضلك اعد المحاولة
@@ -293,7 +295,7 @@
                     </div>
                   </div>
                 </fieldset>
-              
+
                 <!-- Custom Validator Error Message -->
                 <div class="Validator-block">
                   <div
@@ -303,13 +305,8 @@
                     حدث خطأ اثناء تسجيل الدخول ، أعد المحاولة
                   </div>
                 </div>
-              
-                <button
-                  type="submit"
-                  class="btn-login"
-                >
-                  تسجيل الدخول
-                </button>
+
+                <button type="submit" class="btn-login">تسجيل الدخول</button>
               </form>
             </div>
           </div>

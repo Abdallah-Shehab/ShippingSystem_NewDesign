@@ -75,6 +75,8 @@ export class LoginComponent implements AfterViewInit {
       this.authService.login(this.accObj,'Delivery').subscribe({
         next: (res: any) => {
           var response = JSON.parse(res);
+          console.log(res)
+          console.log(response)
           if(response.msg =="Email Not Valid"){
             this.deliveryLoginForm.get('Email')?.setErrors({ 'invalidEmailLogin': true });
           }
@@ -88,8 +90,7 @@ export class LoginComponent implements AfterViewInit {
               this.router.navigate(['/']);
             });
           
-            debugger;
-
+          
 
             this.router.navigate(['/']);
           }
@@ -118,10 +119,12 @@ export class LoginComponent implements AfterViewInit {
 
       this.authService.login(this.accObj,'Employee').subscribe({
       next: (res: any) => {
-        if(res=="Email Not Valid"){
+        var response = JSON.parse(res);
+
+        if(response.msg=="Email Not Valid"){
           this.empLoginForm.get('Email')?.setErrors({ 'invalidEmailLogin': true });
         }
-        else if(res=="password Not Valid"){
+        else if(response.msg=="password Not Valid"){
           this.empLoginForm.get('Password')?.setErrors({ 'invalidPasswordLogin': true });
         }
         else{  //email and password are correct
@@ -160,10 +163,12 @@ export class LoginComponent implements AfterViewInit {
 
       this.authService.login(this.accObj,'Merchant').subscribe({
         next: (res: any) => {
-          if(res=="Email Not Valid"){
+          var response = JSON.parse(res);
+
+          if(response.msg=="Email Not Valid"){
             this.merchantLoginForm.get('Email')?.setErrors({ 'invalidEmailLogin': true });
           }
-          else if(res=="password Not Valid"){
+          else if(response.msg=="password Not Valid"){
             this.merchantLoginForm.get('Password')?.setErrors({ 'invalidPasswordLogin': true });
           }
           else{  //email and password are correct

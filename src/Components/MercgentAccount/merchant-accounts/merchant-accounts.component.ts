@@ -63,6 +63,7 @@ export class MerchantAccountsComponent implements OnInit {
     this._MerchantService.getMerchantAccounts().subscribe({
       next: (response: any) => {
         this.merchantAccounts = response;
+        console.log(this.merchantAccounts)
         this.totalRecords = this.merchantAccounts.length;
         this.loading = false;
       },

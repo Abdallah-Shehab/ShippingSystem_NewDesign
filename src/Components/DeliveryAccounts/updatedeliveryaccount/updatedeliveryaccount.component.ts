@@ -21,9 +21,9 @@ export class UpdateDeliveryAccountComponent implements OnInit {
   accountBranchId: number = 0;
 
   discountTypeOptions = [
-    { value: '1', label: '10%' },
-    { value: '2', label: '20%' },
-    { value: '3', label: '30%' }
+    { value: '1', label: 'نسبة مئوية' },
+    { value: '2', label: 'قيمة' }
+  
   ];
 
   constructor(

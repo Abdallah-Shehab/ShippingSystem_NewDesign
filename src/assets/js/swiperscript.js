@@ -28,7 +28,7 @@ function initializeSwiper() {
           name = "تاجر";
           gif = "../assets/loginGIFs/Merchant-tenant-trusted.gif";
         }
-        return '<button type="button" class="btns-switch btn-container ' + className + '"><img width="80px" height="80px" class="gif-login" src="./gif/' + gif + '" alt="Awesome GIF">' + name + '</button>';
+        return '<button type="button" class="btns-switch btn-container ' + className + '"><img width="80px" height="80px" class="gif-login" src="./gif/' + gif + '" alt="Awesome GIF"> <span span >' + name + '</span></button>';
       },
     },
   });
