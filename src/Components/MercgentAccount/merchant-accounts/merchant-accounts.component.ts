@@ -1,22 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
-import { Table, TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { MerchantService } from '../../../Services/merchant.service';
- 
-import { GlobalService } from '../../../Services/global.service';
-import { SharedModule } from '../../../shared/shared.module';
-
 
 @Component({
   selector: 'app-merchant-accounts',
   standalone: true,
-
   imports: [
     CommonModule,
     RouterLink,
@@ -25,10 +19,8 @@ import { SharedModule } from '../../../shared/shared.module';
     FormsModule,
     TableModule,
     PaginatorModule,
-    InputTextModule,
-    SharedModule
+    InputTextModule
   ],
-
   templateUrl: './merchant-accounts.component.html',
   styleUrls: ['./merchant-accounts.component.css']
 })
@@ -40,22 +32,10 @@ export class MerchantAccountsComponent implements OnInit {
   rows: number = 10;
   searchValue: string = '';
 
-  @ViewChild('dt2') dt2!: Table;
-  permissions:any =[];
-  constructor(private _MerchantService: MerchantService, private _Router: Router,    private globalService:GlobalService
-  ) {
- 
-  }
+  constructor(private _MerchantService: MerchantService, private _Router: Router) {}
 
   ngOnInit(): void {
     this.loadMerchantAccounts();
-    this.globalService.loadGlobalData().then((permissions) => {
-      this.permissions = this.globalService.getEntitiesPermissions(permissions,"التجار");
-      console.log(this.permissions)
-          
-        }).catch((error) => {
-          console.error('Error loading permissions:', error);
-        });
   }
 
   loadMerchantAccounts(): void {
@@ -120,46 +100,4 @@ export class MerchantAccountsComponent implements OnInit {
       account.name.toLowerCase().includes(this.searchValue.toLowerCase())
     );
   }
-
-  clear(table: Table) {
-    table.clear();
-    this.searchValue="";
-}
-
-onInput(event: Event) {
-  const inputElement = event.target as HTMLInputElement;
-  if (this.dt2) {
-    this.dt2.filterGlobal(inputElement.value, 'contains');
-  }
-}
-onSwitchChange(event: any,id:number) {
-  console.log('Switch state:', event.checked);
-  // this.EmpService.updateEmployeeStatus(id).subscribe({
-  //   next:(data)=>{
-  //     console.log(data);
-  //     this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم تعديل الحالة ' });
-  //   },
-  //   error:(err)=>{console.log(err)
-  //     this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء التعديل' });
-
-  //   }
-  // })
-}
-
-Delete(id:number){
-  // this.EmpService.deleteEmployee(id).subscribe({
-  //   next:(data)=>console.log(data),
-  //   error:(err)=>{console.log(err);
-  //     this.messageService.add({ severity: 'error', summary: 'خطأ', detail: 'حدث خطأ أثناء الحذف' });
-
-  //   },
-  //   complete: ()=>{
-  //     this.Employees=this.Employees.filter((e:any)=>e.id!=id)
-  //     this.messageService.add({ severity: 'info', summary: 'تم الحفظ', detail: 'تم حذف الموظف ' });
-
-  //   }
-      
-  // })
-}
-
 }
