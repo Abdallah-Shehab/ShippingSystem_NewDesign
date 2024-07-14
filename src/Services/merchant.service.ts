@@ -58,5 +58,19 @@ export class MerchantService {
     getSpecialOffersByMerchantId(merchantId: number): Observable<any> {
       return this._HttpClient.get(`${this.baseUrl}/SpecialOffer/Merchant/${merchantId}/SpecialOffers`);
     }
+
+
+    addMerchantWithSpecialOffers(merchantData: any, specialOffersData: any[]): Observable<any> {
+      const payload = {
+        merchant: merchantData,
+        specialOffers: specialOffersData
+      };
+      return this._HttpClient.post<any>(`${this.baseUrl}/MerchantWithSpecialOffer/addMerchantWithSpecialOffers`, payload);
+    }
+
+
+    updateMerchantWithSpecialOffers(merchantId: number, data: { merchantData: any, specialOffersData: any[] }): Observable<any> {
+      return this._HttpClient.put(`${this.baseUrl}/api/MerchantWithSpecialOffer/updateMerchantWithSpecialOffers/${merchantId}`, data);
+    }
   
 }

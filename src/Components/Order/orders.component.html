@@ -85,12 +85,13 @@
         </button>
       </td>
       <td>
-        <button
+        <!-- <button
           class="btn btn-primary mx-3"
+          (click)="updateOrders(order.id)"
           [disabled]="!permissions.length || !permissions[0].canWrite"
         >
           <i class="bi bi-pen"></i>
-        </button>
+        </button> -->
         <button
           class="btn btn-danger"
           (click)="Delete(order.id)"

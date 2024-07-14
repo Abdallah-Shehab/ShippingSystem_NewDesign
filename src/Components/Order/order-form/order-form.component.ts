@@ -108,6 +108,7 @@ export class OrderFormComponent implements OnInit {
     this.orderForm.get('deliveryToVillage')?.valueChanges.subscribe(checked => {
       if (checked) {
         this.orderForm.get('streetAndVillage')?.enable();
+        console.log("village Enabled");
       } else {
         this.orderForm.get('streetAndVillage')?.disable();
       }
@@ -268,13 +269,14 @@ export class OrderFormComponent implements OnInit {
 
   AddNewOrder() {
     this.orderForm.markAllAsTouched();
-   console.log(this.orderForm)
-
-     // Temporarily enable the controls before reading the form values
-  this.orderForm.get('totalPrice')?.enable();
-  this.orderForm.get('totalWeight')?.enable();
-  this.orderForm.get('streetAndVillage')?.enable();
+    
+    // Temporarily enable the controls before reading the form values
+    this.orderForm.get('totalPrice')?.enable();
+    this.orderForm.get('totalWeight')?.enable();
+    this.orderForm.get('streetAndVillage')?.enable();
     if (this.orderForm.valid) {
+      console.log(this.orderForm)
+      
       this.order = this.orderForm.value as InewOrder;
       console.log(this.order);
       this.orderService.createOrder(this.order).subscribe({
